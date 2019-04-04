@@ -68,7 +68,7 @@ CREATE TABLE `lasku` (
 --
 -- Vedos taulusta `lasku`
 --
-
+Kukkuluuruu VITUN homo
 INSERT INTO `lasku` (`lasku_id`, `varaus_id`, `asiakas_id`, `nimi`, `lahiosoite`, `postitoimipaikka`, `postinro`, `summa`, `alv`, `Maksettu`) VALUES
 (1, 1, 1, 'Testi', 'testikatu', 'kuopio', '93248', 1000.00, 24.00, 1);
 
