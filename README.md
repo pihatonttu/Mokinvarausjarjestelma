@@ -16,7 +16,7 @@ TODO MIKKO:
 
 -Vaatimusmäärittely
 -Viikkoraportti
--Projektikortti palautus
+
 
 TODO HENRI:
 -Palveluhallinta
