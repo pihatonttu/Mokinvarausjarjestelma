@@ -6,7 +6,7 @@
 -- Generation Time: 03.04.2019 klo 03:44
 -- Palvelimen versio: 5.6.42
 -- PHP Version: 5.6.39
-
+heheheheh
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
 START TRANSACTION;
