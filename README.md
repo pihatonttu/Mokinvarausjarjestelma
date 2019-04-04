@@ -19,7 +19,7 @@ Ryhmän jäsenet:
 
 ### TODO MIKKO:
   - [ ] Vaatimusmäärittely
-  - [ ] Viikkoraportti 14
+  - [x] Viikkoraportti 14
   - [x] Projektikortti
   - [ ] Vaatimusmäärittely
 
