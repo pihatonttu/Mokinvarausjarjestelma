@@ -19,7 +19,7 @@ TODO MIKKO:
 -Projektikortti palautus
 
 TODO HENRI:
--Hio Käyttöliittymää
+-Palveluhallinta
 
 
 TODO SAMU:
