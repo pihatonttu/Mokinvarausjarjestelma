@@ -19,14 +19,21 @@ Ryhmän jäsenet:
    - [x] Välitystaulu mökille ja varaukselle (2primaryy ja lkm)
    - [x] poista palvelutaulusta lkm kenttä
    - [x] Tyyppi taulusta poista mökki ja lisää Nimi + Kuvaus
+   - [ ] Mökille tyypin tilalle kuvaus
+   - [ ] Palvelulle päivämäärä liitostauluun? selvitys opelta
+   - [ ] Mökkiliitos tauluun alku ja loppu pvm
+   - [ ] varaus taulusta ylimääräiset päivämäärät pois
 
 ### TODO MIKKO:
   - [ ] Vaatimusmäärittely
   - [x] Viikkoraportti 14
   - [x] Projektikortti
-
+  - [ ] Viikkoraportti 15
+  - [ ] Viesti opelle
+  
 ### TODO HENRI:
   - [x] Palveluhallinta käyttöliittymä
+  - [ ] Pavelunhallinta toiminnallisuus
 
 ### TODO SAMU:
   - [ ] Toimipisteidenhallinta
@@ -44,5 +51,5 @@ Asiakas haluaa mökin viikoksi ja lisäksi vuokrata sukset 2 päiväksi.
 - Alku ja loppu päivämäärä ei voi olla sama(varaus taulussa)
 
 ##### Korjaus:
-?
+Päivämäärät liitos taulukkoihin joilla saadaan eroteltua kaikkia päivät
 --------
