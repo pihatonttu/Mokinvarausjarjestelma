@@ -2,6 +2,10 @@
 
 Kouluprojekti jossa on tarkoitus tehdä mökeille varausjärjestelmä, joka sisältää tietojen hallinnan ja laskutuksen.
 
+phpmyadmin 212.149.169.90/phpmyadmin
+käyttäjä: admin
+salasana: admin123
+
 Ryhmän jäsenet:
  - Samu Miettinen
  - Mikko Haikonen
@@ -10,24 +14,23 @@ Ryhmän jäsenet:
 
 
 ### TODO JUHIS:
- - [ ] Tietokanta korjaukset:
-   - [ ] Hajota mökki irti palveluista
-   - [ ] Välitystaulu mökille ja varaukselle (2primaryy ja lkm)
-   - [ ] poista palvelutaulusta lkm kenttä
-   - [ ] Tyyppi taulusta poista mökki ja lisää Nimi + Kuvaus
-   - [ ] Hajota laskusta laskutustiedot ja linkitä laskuun laskutustiedotID:llä
+ - [x] Tietokanta korjaukset:
+   - [x] Hajota mökki irti palveluista
+   - [x] Välitystaulu mökille ja varaukselle (2primaryy ja lkm)
+   - [x] poista palvelutaulusta lkm kenttä
+   - [x] Tyyppi taulusta poista mökki ja lisää Nimi + Kuvaus
 
 ### TODO MIKKO:
   - [ ] Vaatimusmäärittely
   - [x] Viikkoraportti 14
   - [x] Projektikortti
-  - [ ] Vaatimusmäärittely
 
 ### TODO HENRI:
-  - [ ] Palveluhallinta
+  - [x] Palveluhallinta käyttöliittymä
 
 ### TODO SAMU:
   - [ ] Toimipisteidenhallinta
+  - [x] serveri pystyssä
 
 
 ## USER CASE:
