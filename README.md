@@ -28,12 +28,12 @@ Ryhmän jäsenet:
   - [ ] Vaatimusmäärittely
   - [x] Viikkoraportti 14
   - [x] Projektikortti
-  - [ ] Viikkoraportti 15
+  - [x] Viikkoraportti 15
   - [ ] Viesti opelle
   
 ### TODO HENRI:
   - [x] Palveluhallinta käyttöliittymä
-  - [ ] Pavelunhallinta toiminnallisuus
+  - [ ] Mökkihallinta toiminnallisuus + käyttöliittymä
 
 ### TODO SAMU:
   - [ ] Toimipisteidenhallinta
