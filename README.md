@@ -29,7 +29,7 @@ Ryhmän jäsenet:
   - [x] Viikkoraportti 14
   - [x] Projektikortti
   - [x] Viikkoraportti 15
-  - [ ] Viesti opelle
+  - [x] Viesti opelle
   
 ### TODO HENRI:
   - [x] Palveluhallinta käyttöliittymä
