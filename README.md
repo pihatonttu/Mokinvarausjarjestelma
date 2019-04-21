@@ -33,7 +33,9 @@ Ryhmän jäsenet:
   
 ### TODO HENRI:
   - [x] Palveluhallinta käyttöliittymä
-  - [ ] Mökkihallinta toiminnallisuus + käyttöliittymä
+  - [ ] Mökkihallinta
+    - [x] Käyttöliittymä
+    - [ ] Toiminnallisuus
 
 ### TODO SAMU:
   - [ ] Toimipisteidenhallinta
