@@ -47,6 +47,42 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Alkuvalikko.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Alkuvalikko.Designer.cs">
+      <DependentUpon>Alkuvalikko.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Asiakashallinta.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Asiakashallinta.Designer.cs">
+      <DependentUpon>Asiakashallinta.cs</DependentUpon>
+    </Compile>
+    <Compile Include="LisaaMokki.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="LisaaMokki.Designer.cs">
+      <DependentUpon>LisaaMokki.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Lisaatoimipiste.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Lisaatoimipiste.Designer.cs">
+      <DependentUpon>Lisaatoimipiste.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Lisaa_muokkaa_mokki.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Lisaa_muokkaa_mokki.Designer.cs">
+      <DependentUpon>Lisaa_muokkaa_mokki.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Mokinhallinta.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Mokinhallinta.Designer.cs">
+      <DependentUpon>Mokinhallinta.cs</DependentUpon>
+    </Compile>
     <Compile Include="mokkitietokantaDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -84,6 +120,24 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Alkuvalikko.resx">
+      <DependentUpon>Alkuvalikko.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Asiakashallinta.resx">
+      <DependentUpon>Asiakashallinta.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LisaaMokki.resx">
+      <DependentUpon>LisaaMokki.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Lisaatoimipiste.resx">
+      <DependentUpon>Lisaatoimipiste.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Lisaa_muokkaa_mokki.resx">
+      <DependentUpon>Lisaa_muokkaa_mokki.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Mokinhallinta.resx">
+      <DependentUpon>Mokinhallinta.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Mokkivaraustenhallinta.resx">
       <DependentUpon>Mokkivaraustenhallinta.cs</DependentUpon>
     </EmbeddedResource>

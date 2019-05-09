@@ -40,7 +40,7 @@ namespace Käyttöliittymäluonnoksia
 
                 if (dt.Rows.Count > 0)
                 {
-                    dataGridView1.DataSource = dt;
+//dataGridView1.DataSource = dt;
                 }
             }
         }

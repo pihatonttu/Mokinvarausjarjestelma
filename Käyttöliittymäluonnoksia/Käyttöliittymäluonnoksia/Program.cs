@@ -16,7 +16,7 @@ namespace Käyttöliittymäluonnoksia
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Palveluhallinta());
+            Application.Run(new Alkuvalikko());
         }
     }
 }
