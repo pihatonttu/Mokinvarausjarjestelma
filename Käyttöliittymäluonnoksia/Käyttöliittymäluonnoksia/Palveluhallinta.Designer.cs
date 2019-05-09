@@ -55,6 +55,7 @@
             this.button4.TabIndex = 41;
             this.button4.Text = "Päivitä";
             this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
             // button3
             // 
@@ -88,6 +89,7 @@
             this.button1.TabIndex = 38;
             this.button1.Text = "Lisää";
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // label6
             // 

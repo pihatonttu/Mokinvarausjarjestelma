@@ -64,6 +64,12 @@
     <Compile Include="Palveluhallinta.Designer.cs">
       <DependentUpon>Palveluhallinta.cs</DependentUpon>
     </Compile>
+    <Compile Include="PalveluLisaaTietue.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PalveluLisaaTietue.Designer.cs">
+      <DependentUpon>PalveluLisaaTietue.cs</DependentUpon>
+    </Compile>
     <Compile Include="Toimipisteidenhallinta.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -83,6 +89,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Palveluhallinta.resx">
       <DependentUpon>Palveluhallinta.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PalveluLisaaTietue.resx">
+      <DependentUpon>PalveluLisaaTietue.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Toimipisteidenhallinta.resx">
       <DependentUpon>Toimipisteidenhallinta.cs</DependentUpon>
