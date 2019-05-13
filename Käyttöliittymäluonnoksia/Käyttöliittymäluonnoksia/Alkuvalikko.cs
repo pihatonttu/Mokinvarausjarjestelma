@@ -36,5 +36,10 @@ namespace Käyttöliittymäluonnoksia
         {
             new Mokkivaraustenhallinta().Show();
         }
+
+        private void Alkuvalikko_Load(object sender, EventArgs e)
+        {
+            string yhteysteksti = @"server= 85.23.149.196;port=3306;userid=admin;password=admin123;database=mokkitietokanta";
+        }
     }
 }
