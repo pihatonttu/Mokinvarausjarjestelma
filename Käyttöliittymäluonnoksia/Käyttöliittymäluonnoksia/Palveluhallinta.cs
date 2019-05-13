@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using MySql.Data.MySqlClient;
+using System.Diagnostics;
 
 namespace Käyttöliittymäluonnoksia
 {
@@ -26,11 +27,11 @@ namespace Käyttöliittymäluonnoksia
 
         private void Palveluhallinta_Load(object sender, EventArgs e)
         {
-            LinkitaTietokanta();
+            PaivitaLista();
         }
 
         //Haetaan tieto ja linkitetään se Datagridiin
-        private void LinkitaTietokanta()
+        private void PaivitaLista()
         {   
             //Tällä kyselyllä haetaan tieto mysql tietokannasta
             string kysely = "SELECT *  FROM palvelu";
@@ -51,7 +52,23 @@ namespace Käyttöliittymäluonnoksia
 
         private void PoistaTietue()
         {
-            //Tietueen poisto koodi
+            string palveluid;
+            if (dataGridPalvelu.SelectedRows.Count != 0)
+            {
+                palveluid = this.dataGridPalvelu.SelectedRows[0].Cells["palvelu_id"].Value.ToString();
+
+                //Tietueen poisto koodi
+                string kysely = @"DELETE FROM palvelu WHERE palvelu_id=" + palveluid;
+
+                using (MySqlConnection yhteys = new MySqlConnection(yhteysteksti))
+                {
+                    MySqlCommand cmd = new MySqlCommand(kysely, yhteys);
+                    yhteys.Open();
+                    MySqlDataReader reader = cmd.ExecuteReader();
+                }
+                    
+
+            }   
         }
         private void MuokkaaTietue()
         {
@@ -65,7 +82,12 @@ namespace Käyttöliittymäluonnoksia
 
         private void button4_Click(object sender, EventArgs e)
         {
-            LinkitaTietokanta();
+            PaivitaLista();
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            PoistaTietue();
         }
     }
 }
