@@ -29,12 +29,14 @@
         private void InitializeComponent()
         {
             this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
+            this.txtid = new System.Windows.Forms.TextBox();
             this.nimitxtbox = new System.Windows.Forms.TextBox();
             this.lahitxtbox = new System.Windows.Forms.TextBox();
             this.postitoimitxtbox = new System.Windows.Forms.TextBox();
@@ -53,6 +55,15 @@
             this.label1.Size = new System.Drawing.Size(228, 24);
             this.label1.TabIndex = 0;
             this.label1.Text = "Toimipisteiden lisääminen";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(3, 99);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(71, 13);
+            this.label2.TabIndex = 1;
+            this.label2.Text = "Toimipiste_ID";
             // 
             // label3
             // 
@@ -108,6 +119,13 @@
             this.label8.TabIndex = 7;
             this.label8.Text = "Puhelinnro";
             // 
+            // txtid
+            // 
+            this.txtid.Location = new System.Drawing.Point(100, 92);
+            this.txtid.Name = "txtid";
+            this.txtid.Size = new System.Drawing.Size(171, 20);
+            this.txtid.TabIndex = 8;
+            // 
             // nimitxtbox
             // 
             this.nimitxtbox.Location = new System.Drawing.Point(100, 118);
@@ -152,9 +170,9 @@
             // 
             // tallennabtn
             // 
-            this.tallennabtn.Location = new System.Drawing.Point(487, 313);
+            this.tallennabtn.Location = new System.Drawing.Point(151, 274);
             this.tallennabtn.Name = "tallennabtn";
-            this.tallennabtn.Size = new System.Drawing.Size(101, 41);
+            this.tallennabtn.Size = new System.Drawing.Size(75, 23);
             this.tallennabtn.TabIndex = 15;
             this.tallennabtn.Text = "Tallenna";
             this.tallennabtn.UseVisualStyleBackColor = true;
@@ -164,7 +182,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(600, 366);
+            this.ClientSize = new System.Drawing.Size(643, 597);
             this.Controls.Add(this.tallennabtn);
             this.Controls.Add(this.puhelinnrotxtbox);
             this.Controls.Add(this.emailtxtbox);
@@ -172,12 +190,14 @@
             this.Controls.Add(this.postitoimitxtbox);
             this.Controls.Add(this.lahitxtbox);
             this.Controls.Add(this.nimitxtbox);
+            this.Controls.Add(this.txtid);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
+            this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Name = "Lisaatoimipiste";
             this.Text = "Lisaatoimipiste";
@@ -189,12 +209,14 @@
         #endregion
 
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.TextBox txtid;
         private System.Windows.Forms.TextBox nimitxtbox;
         private System.Windows.Forms.TextBox lahitxtbox;
         private System.Windows.Forms.TextBox postitoimitxtbox;

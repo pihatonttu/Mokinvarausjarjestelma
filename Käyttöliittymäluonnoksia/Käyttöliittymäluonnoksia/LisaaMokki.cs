@@ -20,44 +20,34 @@ namespace Käyttöliittymäluonnoksia
 
 
         //Haetaan tieto ja linkitetään se Datagridiin
-        private void PalveluLisaaMokki()
+        private void LinkitaTietokanta()
         {
+            DataTable dt = new DataTable();
+
+            //Mysql serverin tiedot
             string yhteysteksti = @"server=85.23.149.196;port=3306;userid=admin;password=admin123;database=mokkitietokanta";
 
-            String mokinNimi = textBox1.Text;
-            String mokinOsoite = textBox2.Text;
-            String mokinKuvaus = textBox4.Text;
-            int mokinHinta = int.Parse(textBox3.Text);
+            //Tällä kyselyllä haetaan tieto mysql tietokannasta
+            string kysely = "SELECT *  FROM asiakas";
 
-            if (textBox1.Text != null && textBox4.Text != null && textBox2.Text != null && textBox3.Text != null)
+
+            using (MySqlConnection yhteys = new MySqlConnection(yhteysteksti))
             {
-                //Tällä kyselyllä haetaan tieto mysql tietokannasta
-                string kysely = @"INSERT INTO mökki (nimi, osoite, kuvaus, hinta)
-                            VALUES('" + mokinNimi + "', '" + mokinOsoite + "', '" + mokinKuvaus + "', '" + mokinHinta + "'); ";
+                MySqlCommand cmd = new MySqlCommand(kysely, yhteys);
+                yhteys.Open();
+                MySqlDataReader reader = cmd.ExecuteReader();
+                dt.Load(reader);
 
-                using (MySqlConnection yhteys = new MySqlConnection(yhteysteksti))
+                if (dt.Rows.Count > 0)
                 {
-                    MySqlCommand cmd = new MySqlCommand(kysely, yhteys);
-                    yhteys.Open();
-                    MySqlDataReader reader = cmd.ExecuteReader();
-                    yhteys.Close();
+//dataGridView1.DataSource = dt;
                 }
-                this.Close();
-            }
-            else
-            {
-
             }
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void LisaaMokki_Load(object sender, EventArgs e)
         {
-            PalveluLisaaMokki();
-        }
-
-        private void button2_Click(object sender, EventArgs e)
-        {
-            this.Close();
+            LinkitaTietokanta();
         }
     }
 }

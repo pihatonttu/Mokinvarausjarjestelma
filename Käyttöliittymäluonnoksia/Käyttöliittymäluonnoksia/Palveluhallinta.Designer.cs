@@ -78,7 +78,6 @@
             this.button2.TabIndex = 39;
             this.button2.Text = "Poista";
             this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // button1
             // 
@@ -187,13 +186,10 @@
             // 
             // dataGridPalvelu
             // 
-            this.dataGridPalvelu.AllowUserToAddRows = false;
-            this.dataGridPalvelu.AllowUserToDeleteRows = false;
             this.dataGridPalvelu.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridPalvelu.Location = new System.Drawing.Point(16, 201);
             this.dataGridPalvelu.Name = "dataGridPalvelu";
             this.dataGridPalvelu.RowTemplate.Height = 24;
-            this.dataGridPalvelu.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridPalvelu.Size = new System.Drawing.Size(820, 485);
             this.dataGridPalvelu.TabIndex = 43;
             // 
