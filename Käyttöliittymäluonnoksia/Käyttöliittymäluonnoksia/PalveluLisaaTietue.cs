@@ -22,7 +22,6 @@ namespace Käyttöliittymäluonnoksia
         {
             string yhteysteksti = @"server=85.23.149.196;port=3306;userid=admin;password=admin123;database=mokkitietokanta";
 
-            string palveluid = textBox1.Text;
             string toimipisteid = textBox2.Text;
             string nimi = textBox4.Text;
             string kuvaus = textBox6.Text;
@@ -31,8 +30,8 @@ namespace Käyttöliittymäluonnoksia
             if (textBox1.Text != null && textBox2.Text != null)
             {
                 //Tällä kyselyllä haetaan tieto mysql tietokannasta
-                string kysely = @"INSERT INTO palvelu
-                            VALUES('"+palveluid+"', '"+toimipisteid+"', '"+nimi+"', '"+kuvaus+"', '"+hinta+"', '"+alv+"'); ";
+                string kysely = @"INSERT INTO palvelu (toimipiste_id,nimi,kuvaus,hinta,alv)
+                            VALUES('"+toimipisteid+"', '"+nimi+"', '"+kuvaus+"', '"+hinta+"', '"+alv+"'); ";
 
                 using (MySqlConnection yhteys = new MySqlConnection(yhteysteksti))
                 {
@@ -47,11 +46,6 @@ namespace Käyttöliittymäluonnoksia
             {
 
             }
-        }
-
-        private void label7_Click(object sender, EventArgs e)
-        {
-
         }
 
         private void button1_Click(object sender, EventArgs e)
