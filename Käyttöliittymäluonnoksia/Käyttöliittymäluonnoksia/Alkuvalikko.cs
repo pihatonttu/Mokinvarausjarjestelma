@@ -29,7 +29,7 @@ namespace Käyttöliittymäluonnoksia
 
         private void mökkibtn_Click(object sender, EventArgs e)
         {
-            
+            new Mokinhallinta().Show();
         }
 
         private void varausbtn_Click(object sender, EventArgs e)
