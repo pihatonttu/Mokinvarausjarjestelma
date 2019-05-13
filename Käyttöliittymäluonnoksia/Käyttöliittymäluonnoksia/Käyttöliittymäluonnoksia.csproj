@@ -94,6 +94,12 @@
     <Compile Include="Mokkivaraustenhallinta.Designer.cs">
       <DependentUpon>Mokkivaraustenhallinta.cs</DependentUpon>
     </Compile>
+    <Compile Include="Muokkaa_mokkivaraus.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Muokkaa_mokkivaraus.Designer.cs">
+      <DependentUpon>Muokkaa_mokkivaraus.cs</DependentUpon>
+    </Compile>
     <Compile Include="Palveluhallinta.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -140,6 +146,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Mokkivaraustenhallinta.resx">
       <DependentUpon>Mokkivaraustenhallinta.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Muokkaa_mokkivaraus.resx">
+      <DependentUpon>Muokkaa_mokkivaraus.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Palveluhallinta.resx">
       <DependentUpon>Palveluhallinta.cs</DependentUpon>

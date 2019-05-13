@@ -53,8 +53,10 @@
             // 
             this.dataGridVaraus.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridVaraus.Location = new System.Drawing.Point(12, 216);
+            this.dataGridVaraus.MultiSelect = false;
             this.dataGridVaraus.Name = "dataGridVaraus";
             this.dataGridVaraus.RowHeadersVisible = false;
+            this.dataGridVaraus.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridVaraus.Size = new System.Drawing.Size(754, 383);
             this.dataGridVaraus.TabIndex = 0;
             // 
@@ -171,6 +173,7 @@
             this.button3.TabIndex = 19;
             this.button3.Text = "Muokkaa";
             this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // button4
             // 
