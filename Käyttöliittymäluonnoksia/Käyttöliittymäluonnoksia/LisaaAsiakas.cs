@@ -9,32 +9,36 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using MySql.Data.MySqlClient;
 
-
 namespace Käyttöliittymäluonnoksia
 {
-    public partial class LisaaMokki : Form
+    public partial class LisaaAsiakas : Form
     {
-        public LisaaMokki()
+        public LisaaAsiakas()
         {
             InitializeComponent();
         }
 
-
         //Haetaan tieto ja linkitetään se Datagridiin
-        private void PalveluLisaaMokki()
+        private void palveluLisaaAsiakas()
         {
             string yhteysteksti = @"server=85.23.149.196;port=3306;userid=admin;password=admin123;database=mokkitietokanta";
 
-            String mokinNimi = textBox1.Text;
-            String mokinOsoite = textBox2.Text;
-            String mokinKuvaus = textBox4.Text;
-            string mokinHinta = numericUpDown1.Value.ToString();
+            string asiakkaanEtunimi = textBox1.Text;
+            string asiakkaanSukunimi = textBox2.Text;
+            string asiakkaanLahisoite = textBox3.Text;
+            string asiakkaanPostitoimipaikka = textBox4.Text;
+            string asiakkaanPostinro = textBox5.Text;
+            string asiakkaanSahkoposti = textBox6.Text;
+            string asiakkaanPuhelinro = textBox7.Text;
 
-            if (textBox1.Text != null && textBox4.Text != null && textBox2.Text != null && numericUpDown1.Value != 0)
+            if (textBox1.Text != null && textBox2.Text != null && textBox3.Text != null && textBox4.Text != null &&
+                textBox5.Text != null && textBox6.Text != null && textBox7.Text != null)
             {
                 //Tällä kyselyllä haetaan tieto mysql tietokannasta
-                string kysely = @"INSERT INTO mökki (nimi, osoite, kuvaus, hinta)
-                            VALUES('" + mokinNimi + "', '" + mokinOsoite + "', '" + mokinKuvaus + "', '" + mokinHinta + "'); ";
+                string kysely = @"INSERT INTO asiakas (etunimi, sukunimi, lahiosoite, postitoimipaikka, postinro, email, puhelinnro)
+                            VALUES('" + asiakkaanEtunimi + "', '" + asiakkaanSukunimi + "', '" + asiakkaanLahisoite + "', '" 
+                            + asiakkaanPostitoimipaikka + "', '" + asiakkaanPostinro + "', '" + asiakkaanSahkoposti +
+                            "', '" +asiakkaanPuhelinro + "'); ";
 
                 using (MySqlConnection yhteys = new MySqlConnection(yhteysteksti))
                 {
@@ -53,7 +57,7 @@ namespace Käyttöliittymäluonnoksia
 
         private void button1_Click(object sender, EventArgs e)
         {
-            PalveluLisaaMokki();
+            palveluLisaaAsiakas();
         }
 
         private void button2_Click(object sender, EventArgs e)

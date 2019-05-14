@@ -18,14 +18,12 @@ namespace Käyttöliittymäluonnoksia
             InitializeComponent();
         }
 
-
+        //Mysql serverin tiedot
+        string yhteysteksti = @"server=85.23.149.196;port=3306;userid=admin;password=admin123;database=mokkitietokanta";
         //Haetaan tieto ja linkitetään se Datagridiin
         private void LinkitaTietokanta()
         {
             DataTable dt = new DataTable();
-
-            //Mysql serverin tiedot
-            string yhteysteksti = @"server=85.23.149.196;port=3306;userid=admin;password=admin123;database=mokkitietokanta";
 
             //Tällä kyselyllä haetaan tieto mysql tietokannasta
             string kysely = "SELECT *  FROM mökki";
@@ -37,11 +35,34 @@ namespace Käyttöliittymäluonnoksia
                 yhteys.Open();
                 MySqlDataReader reader = cmd.ExecuteReader();
                 dt.Load(reader);
+                yhteys.Close();
 
                 if (dt.Rows.Count > 0)
                 {
                     dataGridView1.DataSource = dt;
                 }
+            }
+        }
+
+        private void PoistaTietue()
+        {
+            string mökkiid;
+            if (dataGridView1.SelectedRows.Count != 0)
+            {
+                mökkiid = this.dataGridView1.SelectedRows[0].Cells["mökki_id"].Value.ToString();
+
+                //Tietueen poisto koodi
+                string kysely = @"DELETE FROM mökki WHERE mökki_id=" + mökkiid;
+
+                using (MySqlConnection yhteys = new MySqlConnection(yhteysteksti))
+                {
+                    MySqlCommand cmd = new MySqlCommand(kysely, yhteys);
+                    yhteys.Open();
+                    MySqlDataReader reader = cmd.ExecuteReader();
+                    yhteys.Close();
+                }
+
+
             }
         }
 
@@ -52,7 +73,12 @@ namespace Käyttöliittymäluonnoksia
 
         private void button2_Click(object sender, EventArgs e)
         {
-            new LisaaMokki().Show();
+            new LisaaMokki().ShowDialog();
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            PoistaTietue();
         }
     }
 }
