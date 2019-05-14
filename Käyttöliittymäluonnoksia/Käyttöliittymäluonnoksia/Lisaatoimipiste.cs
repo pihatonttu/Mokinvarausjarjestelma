@@ -13,12 +13,40 @@ namespace Käyttöliittymäluonnoksia
 {
     public partial class Lisaatoimipiste : Form
     {
+        bool muokkaa = false;
+        int toimipisteid;
+        string nimi, lahiosoite, postitoimipaikka, postinro, email, puhelinnro;
+
+        private void Lisaatoimipiste_Load(object sender, EventArgs e)
+        {
+            nimitxtbox.Text = nimi;
+            lahitxtbox.Text = lahiosoite;
+            postitoimitxtbox.Text = postitoimipaikka;
+            postinrotxtbox.Text = postinro;
+            emailtxtbox.Text = email;
+            puhelinnrotxtbox.Text = email;
+
+        }
+
+        public Lisaatoimipiste(int toimipisteid, string nimi, string lahiosoite, string postitoimipaikka, string postinro, string email, string puhelinnro)
+        {
+            InitializeComponent();
+
+            this.toimipisteid = toimipisteid;
+            this.nimi = nimi;
+            this.lahiosoite = lahiosoite;
+            this.postitoimipaikka = postitoimipaikka;
+            this.postinro = postinro;
+            this.email = email;
+            this.puhelinnro = puhelinnro;
+            muokkaa = true;
+        }
         public Lisaatoimipiste()
         {
             InitializeComponent();
         }
 
-        private void LisaaTietue()
+        private void lisaamuokkaatietue()
         {
             string yhteysteksti = @"server=85.23.149.196;port=3306;userid=admin;password=admin123;database=mokkitietokanta";
 
@@ -32,9 +60,18 @@ namespace Käyttöliittymäluonnoksia
 
             if (postitoimitxtbox.Text != null && lahitxtbox.Text != null)
             {
-                //Tällä kyselyllä haetaan tieto mysql tietokannasta
-                string kysely = @"INSERT INTO toimipiste (nimi, lahiosoite, postitoimipaikka, postinro, email, puhelinnro)
+                string kysely;
+                if (muokkaa)
+                {
+                    kysely = @"UPDATE toimipiste SET nimi='" + nimi + "', lahiosoite='" + lahiosoite + "', postitoimipaikka='" + postitoimipaikka + "', postinro='" + postinro + "', email='" + email + "' , puhelinnro='" + puhelinnro + "'WHERE toimipiste_id='" + toimipisteid + "';";
+                }
+                else
+                {
+                    //Tällä kyselyllä haetaan tieto mysql tietokannasta
+                    kysely = @"INSERT INTO toimipiste (nimi, lahiosoite, postitoimipaikka, postinro, email, puhelinnro)
                             VALUES('" + nimi + "', '" + lahiosoite + "', '" + postitoimipaikka + "', '" + postinro + "', '" + email + "' , '" + puhelinnro + "'); ";
+                }
+                
 
                 using (MySqlConnection yhteys = new MySqlConnection(yhteysteksti))
                 {
@@ -54,7 +91,12 @@ namespace Käyttöliittymäluonnoksia
 
         private void tallennabtn_Click(object sender, EventArgs e)
         {
-            LisaaTietue();
+            lisaamuokkaatietue();
+
+            if (muokkaa)
+            {
+
+            }
         }
     }
 }

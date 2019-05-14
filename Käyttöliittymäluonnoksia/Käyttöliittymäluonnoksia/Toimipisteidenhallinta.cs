@@ -17,15 +17,17 @@ namespace Käyttöliittymäluonnoksia
         public Toimipisteidenhallinta()
         {
             InitializeComponent();
+        
         }
+        //Mysql serverin tiedot
+        string yhteysteksti = @"server=85.23.149.196;port=3306;userid=admin;password=admin123;database=mokkitietokanta";
 
         //Haetaan tieto ja linkitetään se Datagridiin
         private void LinkitaTietokanta()
         {
             DataTable dt = new DataTable();
 
-            //Mysql serverin tiedot
-            string yhteysteksti = @"server=85.23.149.196;port=3306;userid=admin;password=admin123;database=mokkitietokanta";
+            
 
             //Tällä kyselyllä haetaan tieto mysql tietokannasta
             string kysely = "SELECT * FROM toimipiste";
@@ -44,6 +46,26 @@ namespace Käyttöliittymäluonnoksia
                 }
             }
         }
+        private void PoistaTietue()
+        {
+            string toimipisteid;
+            if (dataGridToimipiste.SelectedRows.Count != 0)
+            {
+                toimipisteid = this.dataGridToimipiste.SelectedRows[0].Cells["toimipiste_id"].Value.ToString();
+
+                //Tietueen poisto koodi
+                string kysely = @"DELETE FROM toimipiste WHERE toimipiste_id=" + toimipisteid;
+
+                using (MySqlConnection yhteys = new MySqlConnection(yhteysteksti))
+                {
+                    MySqlCommand cmd = new MySqlCommand(kysely, yhteys);
+                    yhteys.Open();
+                    MySqlDataReader reader = cmd.ExecuteReader();
+                }
+
+
+            }
+        }
 
         private void Toimipisteidenhallinta_Load(object sender, EventArgs e)
         {
@@ -53,6 +75,23 @@ namespace Käyttöliittymäluonnoksia
         private void lisääbtn_Click(object sender, EventArgs e)
         {
             new Lisaatoimipiste().Show();
+        }
+
+        private void poistabtn_Click(object sender, EventArgs e)
+        {
+            PoistaTietue();
+        }
+
+        private void muokkaabtn_Click(object sender, EventArgs e)
+        {
+            int toimipisteid = int.Parse(this.dataGridToimipiste.SelectedRows[0].Cells["toimipiste_id"].Value.ToString());
+            string nimi = this.dataGridToimipiste.SelectedRows[0].Cells["nimi"].Value.ToString();
+            string lahiosoite = this.dataGridToimipiste.SelectedRows[0].Cells["lahiosoite"].Value.ToString();
+            string postitoimipaikka = this.dataGridToimipiste.SelectedRows[0].Cells["postitoimipaikka"].Value.ToString();
+            string postinro = this.dataGridToimipiste.SelectedRows[0].Cells["postinro"].Value.ToString();
+            string email = this.dataGridToimipiste.SelectedRows[0].Cells["email"].Value.ToString();
+            string puhelinnro = this.dataGridToimipiste.SelectedRows[0].Cells["puhelinnro"].Value.ToString();
+            new Lisaatoimipiste(toimipisteid, nimi, lahiosoite, postitoimipaikka, postinro, email, puhelinnro).Show();
         }
     }
 }

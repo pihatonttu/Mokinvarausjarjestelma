@@ -181,6 +181,7 @@
             this.Controls.Add(this.label1);
             this.Name = "Lisaatoimipiste";
             this.Text = "Lisaatoimipiste";
+            this.Load += new System.EventHandler(this.Lisaatoimipiste_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
