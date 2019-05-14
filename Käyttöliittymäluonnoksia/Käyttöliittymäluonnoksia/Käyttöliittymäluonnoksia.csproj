@@ -59,6 +59,18 @@
     <Compile Include="Asiakashallinta.Designer.cs">
       <DependentUpon>Asiakashallinta.cs</DependentUpon>
     </Compile>
+    <Compile Include="LisaaAsiakas.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="LisaaAsiakas.Designer.cs">
+      <DependentUpon>LisaaAsiakas.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Lisaalasku.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Lisaalasku.Designer.cs">
+      <DependentUpon>Lisaalasku.cs</DependentUpon>
+    </Compile>
     <Compile Include="LisaaMokki.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -131,6 +143,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Asiakashallinta.resx">
       <DependentUpon>Asiakashallinta.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LisaaAsiakas.resx">
+      <DependentUpon>LisaaAsiakas.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Lisaalasku.resx">
+      <DependentUpon>Lisaalasku.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="LisaaMokki.resx">
       <DependentUpon>LisaaMokki.cs</DependentUpon>
