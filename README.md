@@ -14,34 +14,12 @@ Ryhmän jäsenet:
  - Henri Mönkkönen
 
 
-### TODO JUHIS:
- - [x] Tietokanta korjaukset:
-   - [x] Hajota mökki irti palveluista
-   - [x] Välitystaulu mökille ja varaukselle (2primaryy ja lkm)
-   - [x] poista palvelutaulusta lkm kenttä
-   - [x] Tyyppi taulusta poista mökki ja lisää Nimi + Kuvaus
-   - [ ] Mökille tyypin tilalle kuvaus
-   - [ ] Palvelulle päivämäärä liitostauluun? selvitys opelta
-   - [ ] Mökkiliitos tauluun alku ja loppu pvm
-   - [ ] varaus taulusta ylimääräiset päivämäärät pois
-
-### TODO MIKKO:
-  - [ ] Vaatimusmäärittely
-  - [x] Viikkoraportti 14
-  - [x] Projektikortti
-  - [x] Viikkoraportti 15
-  - [x] Viesti opelle
-  
-### TODO HENRI:
-  - [x] Palveluhallinta käyttöliittymä
-  - [ ] Mökkihallinta
-    - [x] Käyttöliittymä
-    - [ ] Toiminnallisuus
-
-### TODO SAMU:
-  - [ ] Toimipisteidenhallinta
-  - [x] serveri pystyssä
-
+### TODO:
+ - [ ] Laskut taulu
+ - [ ] Asiakas taulu HAIKARA
+ - [ ] Palveluvaraus taulu MÖNÖ
+ - [ ] 
+ 
 
 ## USER CASE:
 -----------
