@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using MySql.Data.MySqlClient;
 using System.Diagnostics;
+using System.Threading;
 
 namespace Käyttöliittymäluonnoksia
 {
@@ -27,12 +28,12 @@ namespace Käyttöliittymäluonnoksia
 
         private void Palveluhallinta_Load(object sender, EventArgs e)
         {
-            PaivitaLista();
+            ListaaMuokattu();
         }
 
         //Haetaan tieto ja linkitetään se Datagridiin
         private void PaivitaLista()
-        {   
+        {
             //Tällä kyselyllä haetaan tieto mysql tietokannasta
             string kysely = "SELECT *  FROM palvelu";
 
@@ -42,10 +43,21 @@ namespace Käyttöliittymäluonnoksia
                 yhteys.Open();
                 MySqlDataReader reader = cmd.ExecuteReader();
                 dt.Load(reader);
+                yhteys.Close();
             }
             if (dt.Rows.Count > 0)
             {
-                dataGridPalvelu.DataSource = dt;
+                
+
+                if (dataGridPalvelu.InvokeRequired)
+                {
+                    dataGridPalvelu.Invoke(new MethodInvoker(delegate { dataGridPalvelu.DataSource = null; dataGridPalvelu.DataSource = dt; }));
+                    
+                } else
+                {
+                    dataGridPalvelu.DataSource = null;
+                    dataGridPalvelu.DataSource = dt;
+                }
             }
 
         }
@@ -65,29 +77,50 @@ namespace Käyttöliittymäluonnoksia
                     MySqlCommand cmd = new MySqlCommand(kysely, yhteys);
                     yhteys.Open();
                     MySqlDataReader reader = cmd.ExecuteReader();
+                    yhteys.Close();
                 }
-                    
 
+                this.dataGridPalvelu.Rows.RemoveAt(this.dataGridPalvelu.SelectedRows[0].Index);
             }   
         }
+
+        //Tietojen muokkaus
         private void MuokkaaTietue()
         {
-            //Tietueen muokkaus koodi
+            //kerätään tiedot
+            string palveluid = this.dataGridPalvelu.SelectedRows[0].Cells["palvelu_id"].Value.ToString();
+            string toimipiste_id = this.dataGridPalvelu.SelectedRows[0].Cells["toimipiste_id"].Value.ToString();
+            string nimi = this.dataGridPalvelu.SelectedRows[0].Cells["nimi"].Value.ToString();
+            string kuvaus = this.dataGridPalvelu.SelectedRows[0].Cells["kuvaus"].Value.ToString();
+            string hinta = this.dataGridPalvelu.SelectedRows[0].Cells["hinta"].Value.ToString();
+            string alv = this.dataGridPalvelu.SelectedRows[0].Cells["alv"].Value.ToString();
+            //Viedään ne toiseen formiin
+            new PalveluLisaaTietue(palveluid, toimipiste_id, nimi,kuvaus,hinta,alv).ShowDialog();
+            //Kun palataan niin päivitetään lista
+            ListaaMuokattu();
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            new PalveluLisaaTietue().Show();
-        }
-
-        private void button4_Click(object sender, EventArgs e)
-        {
-            PaivitaLista();
+            new PalveluLisaaTietue().ShowDialog();
+            ListaaMuokattu();
+            Debug.WriteLine("toimii");
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
             PoistaTietue();
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            MuokkaaTietue();
+        }
+
+        private void ListaaMuokattu()
+        {
+            Thread listanpaivitys = new Thread(new ThreadStart(PaivitaLista));
+            listanpaivitys.Start();
         }
     }
 }

@@ -28,59 +28,42 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.PalveluNimi = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.toimipistetxt = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.textBox4 = new System.Windows.Forms.TextBox();
+            this.nimitxt = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
-            this.textBox5 = new System.Windows.Forms.TextBox();
+            this.hintatxt = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
-            this.textBox6 = new System.Windows.Forms.TextBox();
+            this.kuvaustxt = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
-            this.textBox7 = new System.Windows.Forms.TextBox();
+            this.alvtxt = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
+            this.TallennaBtn = new System.Windows.Forms.Button();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
             // 
-            // PalveluNimi
+            // toimipistetxt
             // 
-            this.PalveluNimi.AutoSize = true;
-            this.PalveluNimi.Location = new System.Drawing.Point(43, 69);
-            this.PalveluNimi.Name = "PalveluNimi";
-            this.PalveluNimi.Size = new System.Drawing.Size(71, 17);
-            this.PalveluNimi.TabIndex = 0;
-            this.PalveluNimi.Text = "Palvelu ID";
-            // 
-            // textBox1
-            // 
-            this.textBox1.Location = new System.Drawing.Point(153, 69);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(219, 22);
-            this.textBox1.TabIndex = 1;
-            // 
-            // textBox2
-            // 
-            this.textBox2.Location = new System.Drawing.Point(153, 97);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(219, 22);
-            this.textBox2.TabIndex = 3;
+            this.toimipistetxt.Location = new System.Drawing.Point(162, 46);
+            this.toimipistetxt.Name = "toimipistetxt";
+            this.toimipistetxt.Size = new System.Drawing.Size(219, 22);
+            this.toimipistetxt.TabIndex = 3;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(43, 97);
+            this.label1.Location = new System.Drawing.Point(43, 93);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(72, 17);
             this.label1.TabIndex = 2;
             this.label1.Text = "Toimipiste";
             // 
-            // textBox4
+            // nimitxt
             // 
-            this.textBox4.Location = new System.Drawing.Point(153, 125);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(219, 22);
-            this.textBox4.TabIndex = 5;
+            this.nimitxt.Location = new System.Drawing.Point(153, 125);
+            this.nimitxt.Name = "nimitxt";
+            this.nimitxt.Size = new System.Drawing.Size(219, 22);
+            this.nimitxt.TabIndex = 5;
             // 
             // label3
             // 
@@ -91,12 +74,12 @@
             this.label3.TabIndex = 4;
             this.label3.Text = "Nimi";
             // 
-            // textBox5
+            // hintatxt
             // 
-            this.textBox5.Location = new System.Drawing.Point(153, 209);
-            this.textBox5.Name = "textBox5";
-            this.textBox5.Size = new System.Drawing.Size(219, 22);
-            this.textBox5.TabIndex = 11;
+            this.hintatxt.Location = new System.Drawing.Point(153, 209);
+            this.hintatxt.Name = "hintatxt";
+            this.hintatxt.Size = new System.Drawing.Size(219, 22);
+            this.hintatxt.TabIndex = 11;
             // 
             // label4
             // 
@@ -107,12 +90,12 @@
             this.label4.TabIndex = 10;
             this.label4.Text = "Hinta";
             // 
-            // textBox6
+            // kuvaustxt
             // 
-            this.textBox6.Location = new System.Drawing.Point(153, 181);
-            this.textBox6.Name = "textBox6";
-            this.textBox6.Size = new System.Drawing.Size(219, 22);
-            this.textBox6.TabIndex = 9;
+            this.kuvaustxt.Location = new System.Drawing.Point(153, 181);
+            this.kuvaustxt.Name = "kuvaustxt";
+            this.kuvaustxt.Size = new System.Drawing.Size(219, 22);
+            this.kuvaustxt.TabIndex = 9;
             // 
             // label5
             // 
@@ -123,12 +106,12 @@
             this.label5.TabIndex = 8;
             this.label5.Text = "Kuvaus";
             // 
-            // textBox7
+            // alvtxt
             // 
-            this.textBox7.Location = new System.Drawing.Point(153, 237);
-            this.textBox7.Name = "textBox7";
-            this.textBox7.Size = new System.Drawing.Size(219, 22);
-            this.textBox7.TabIndex = 13;
+            this.alvtxt.Location = new System.Drawing.Point(153, 237);
+            this.alvtxt.Name = "alvtxt";
+            this.alvtxt.Size = new System.Drawing.Size(219, 22);
+            this.alvtxt.TabIndex = 13;
             // 
             // label6
             // 
@@ -139,55 +122,62 @@
             this.label6.TabIndex = 12;
             this.label6.Text = "Alv";
             // 
-            // button1
+            // TallennaBtn
             // 
-            this.button1.Location = new System.Drawing.Point(653, 387);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(135, 51);
-            this.button1.TabIndex = 14;
-            this.button1.Text = "Tallenna";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.TallennaBtn.Location = new System.Drawing.Point(653, 387);
+            this.TallennaBtn.Name = "TallennaBtn";
+            this.TallennaBtn.Size = new System.Drawing.Size(135, 51);
+            this.TallennaBtn.TabIndex = 14;
+            this.TallennaBtn.Text = "Tallenna";
+            this.TallennaBtn.UseVisualStyleBackColor = true;
+            this.TallennaBtn.Click += new System.EventHandler(this.TallennaBtn_Click);
+            // 
+            // comboBox1
+            // 
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Location = new System.Drawing.Point(153, 90);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(219, 24);
+            this.comboBox1.TabIndex = 15;
+            this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
             // 
             // PalveluLisaaTietue
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.button1);
-            this.Controls.Add(this.textBox7);
+            this.Controls.Add(this.comboBox1);
+            this.Controls.Add(this.TallennaBtn);
+            this.Controls.Add(this.alvtxt);
             this.Controls.Add(this.label6);
-            this.Controls.Add(this.textBox5);
+            this.Controls.Add(this.hintatxt);
             this.Controls.Add(this.label4);
-            this.Controls.Add(this.textBox6);
+            this.Controls.Add(this.kuvaustxt);
             this.Controls.Add(this.label5);
-            this.Controls.Add(this.textBox4);
+            this.Controls.Add(this.nimitxt);
             this.Controls.Add(this.label3);
-            this.Controls.Add(this.textBox2);
+            this.Controls.Add(this.toimipistetxt);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.textBox1);
-            this.Controls.Add(this.PalveluNimi);
             this.Name = "PalveluLisaaTietue";
             this.Text = "PalveluLisaaTietue";
+            this.Load += new System.EventHandler(this.PalveluLisaaTietue_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
         #endregion
-
-        private System.Windows.Forms.Label PalveluNimi;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox toimipistetxt;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox textBox4;
+        private System.Windows.Forms.TextBox nimitxt;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox textBox5;
+        private System.Windows.Forms.TextBox hintatxt;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.TextBox textBox6;
+        private System.Windows.Forms.TextBox kuvaustxt;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.TextBox textBox7;
+        private System.Windows.Forms.TextBox alvtxt;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button TallennaBtn;
+        private System.Windows.Forms.ComboBox comboBox1;
     }
 }

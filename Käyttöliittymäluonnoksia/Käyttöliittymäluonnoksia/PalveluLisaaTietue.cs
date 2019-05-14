@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -13,44 +14,118 @@ namespace Käyttöliittymäluonnoksia
 {
     public partial class PalveluLisaaTietue : Form
     {
+        bool muokataan = false; //Tällä tarkastetaan muokataanko tietoa vai lisätäänkö
+
+        string palveluid;
+
+        //Kun tehdään uusi tietue
         public PalveluLisaaTietue()
         {
             InitializeComponent();
         }
 
-        private void LisaaTietue()
+        //Kun muokataan tietuetta niin tuodan kenttiin vanhat tiedot
+        public PalveluLisaaTietue(string palveluid, string toimipiste_id, string nimi, string kuvaus, string hinta, string alv)
         {
+            InitializeComponent();
+
+            this.palveluid = palveluid;
+            comboBox1.Text = toimipiste_id;
+            nimitxt.Text = nimi;
+            kuvaustxt.Text = kuvaus;
+            hintatxt.Text = hinta;
+            alvtxt.Text = alv;
+
+            //Koska tietoa muokataan muutetaan arvo todeksi
+            muokataan = true;
+        }
+
+        //Lisätään tai muokataan tietoja tällä samalla funktiolla
+        private void LisaaMuokkaaTietoja()
+        {
+            //Yhteysteksti tietokantaan
             string yhteysteksti = @"server=85.23.149.196;port=3306;userid=admin;password=admin123;database=mokkitietokanta";
+      
+            string toimipisteid = comboBox1.SelectedValue.ToString();
+            string nimi = nimitxt.Text;
+            string kuvaus = kuvaustxt.Text;
+            string hinta = hintatxt.Text;
+            string alv = alvtxt.Text;
 
-            string toimipisteid = textBox2.Text;
-            string nimi = textBox4.Text;
-            string kuvaus = textBox6.Text;
-            string hinta = textBox5.Text;
-            string alv = textBox7.Text;
-            if (textBox1.Text != null && textBox2.Text != null)
+            //Tarkistetaan että tyhjiä kenttiä on
+            if (nimi != "" && kuvaus != "" && hinta != "" && alv != "")
             {
-                //Tällä kyselyllä haetaan tieto mysql tietokannasta
-                string kysely = @"INSERT INTO palvelu (toimipiste_id,nimi,kuvaus,hinta,alv)
-                            VALUES('"+toimipisteid+"', '"+nimi+"', '"+kuvaus+"', '"+hinta+"', '"+alv+"'); ";
+                string kysely = "";
 
-                using (MySqlConnection yhteys = new MySqlConnection(yhteysteksti))
+                if (muokataan)
                 {
-                    MySqlCommand cmd = new MySqlCommand(kysely, yhteys);
-                    yhteys.Open();
-                    MySqlDataReader reader = cmd.ExecuteReader();
-                    yhteys.Close();
+                    kysely = @" UPDATE palvelu
+                                SET toimipiste_id = '" + toimipisteid + "', nimi= '" + nimi + "', kuvaus= '" + kuvaus + "', hinta= '" + hinta + "', alv= '" + toimipisteid + "' " +
+                                "WHERE palvelu_id = " + palveluid;
                 }
-                this.Close();
+                else
+                {
+                    //Tällä kyselyllä haetaan tieto mysql tietokannasta
+                    kysely = @"INSERT INTO palvelu (toimipiste_id,nimi,kuvaus,hinta,alv)
+                            VALUES('" + toimipisteid + "', '" + nimi + "', '" + kuvaus + "', '" + hinta + "', '" + alv + "'); ";
+                }
+
+                //Ajetaan kysely
+                    using (MySqlConnection yhteys = new MySqlConnection(yhteysteksti))
+                    {
+                        MySqlCommand cmd = new MySqlCommand(kysely, yhteys);
+                        yhteys.Open();
+                        MySqlDataReader reader = cmd.ExecuteReader();
+                        yhteys.Close();
+                    }
+                    this.Close(); //Suljetaan yhteys
             }
             else
             {
-
+                //Näytetään virheilmoitus
+                MessageBox.Show("Et voi tallentaa tyhjiä kenttiä.","Virheilmoitus");
             }
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void TallennaBtn_Click(object sender, EventArgs e)
         {
-            LisaaTietue();
+            LisaaMuokkaaTietoja();
+
+        }
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private DataTable LinkitaTietokanta()
+        {
+            DataTable dt = new DataTable();
+
+            //Mysql serverin tiedot
+            string yhteysteksti = @"server=85.23.149.196;port=3306;userid=admin;password=admin123;database=mokkitietokanta";
+
+            //Tällä kyselyllä haetaan tieto mysql tietokannasta
+            string kysely = @"SELECT * FROM toimipiste";
+
+
+            using (MySqlConnection yhteys = new MySqlConnection(yhteysteksti))
+            {
+                MySqlCommand cmd = new MySqlCommand(kysely, yhteys);
+                yhteys.Open();
+                MySqlDataReader reader = cmd.ExecuteReader();
+                dt.Load(reader);
+                yhteys.Close();
+
+            }
+            return dt;
+        }
+
+        private void PalveluLisaaTietue_Load(object sender, EventArgs e)
+        {
+            comboBox1.DataSource = new BindingSource(LinkitaTietokanta(), null);
+            comboBox1.DisplayMember = "nimi";
+            comboBox1.ValueMember = "toimipiste_id";
         }
     }
 }
