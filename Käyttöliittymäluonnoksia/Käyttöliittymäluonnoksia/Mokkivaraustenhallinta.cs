@@ -16,16 +16,15 @@ namespace Käyttöliittymäluonnoksia
         public Mokkivaraustenhallinta()
         {
             InitializeComponent();
-            Disable();
         }
 
         private void Mokkivaraustenhallinta_Load(object sender, EventArgs e)
         {
-            LinkitaTietokanta();
+            PaivitaTietokanta();
         }
 
         //Haetaan tieto ja linkitetään se Datagridiin
-        private void LinkitaTietokanta()
+        private void PaivitaTietokanta()
         {
             DataTable dt = new DataTable();
 
@@ -49,40 +48,10 @@ namespace Käyttöliittymäluonnoksia
 
                 if (dt.Rows.Count > 0)
                 {
+                    dataGridVaraus.DataSource = null;
                     dataGridVaraus.DataSource = dt;
                 }
             }
-        }
-
-        private void radioButton1_CheckedChanged(object sender, EventArgs e)
-        {
-            if (radioButton1.Checked == true) {
-                Disable();
-            }
-            else {
-                dateTimePicker1.Enabled = true;
-                dateTimePicker2.Enabled = true;
-                textBox1.Enabled = true;
-                textBox2.Enabled = true;
-                comboBox1.Enabled = true;
-                button4.Enabled = true;
-                label2.Enabled = true;
-                label5.Enabled = true;
-                label6.Enabled = true;
-            }
-        }
-
-        private void Disable()
-        {
-            dateTimePicker1.Enabled = false;
-            dateTimePicker2.Enabled = false;
-            textBox1.Enabled = false;
-            textBox2.Enabled = false;
-            comboBox1.Enabled = false;
-            button4.Enabled = false;
-            label2.Enabled = false;
-            label5.Enabled = false;
-            label6.Enabled = false;
         }
 
         private void button3_Click(object sender, EventArgs e)
@@ -91,7 +60,16 @@ namespace Käyttöliittymäluonnoksia
             DateTime alku = DateTime.Parse(this.dataGridVaraus.SelectedRows[0].Cells["alkamispäivämäärä"].Value.ToString());
             DateTime loppu = DateTime.Parse(this.dataGridVaraus.SelectedRows[0].Cells["loppumispäivämäärä"].Value.ToString());
             int id = int.Parse(this.dataGridVaraus.SelectedRows[0].Cells["varaus_id"].Value.ToString());
+
+            // Avataan uusi ikkuna, jonne viedään muuttujia parametreinä
             new Muokkaa_mokkivaraus(lkm, alku, loppu, id).ShowDialog();
+            // Kun ikkuna suljetaan, päivitetään datagridview
+            PaivitaTietokanta();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            new Uusi_varaus().Show();
         }
     }
 }
