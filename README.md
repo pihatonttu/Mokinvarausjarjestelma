@@ -15,11 +15,20 @@ Ryhmän jäsenet:
 
 
 ### TODO:
- - [ ] Laskut taulu
- - [ ] Asiakas taulu HAIKARA
- - [ ] Palveluvaraus taulu MÖNÖ
- - [ ] 
+ - [ ] Lisää mökkki varaus taulu
+ - [ ] Lisää palvelu varaus
  
+ - [ ] Poista kaikki suodatukset
+
+ - [ ] Laskut taulu muokkaus toiminto ja id näytöt
+ - [ ] Asiakas taulu muokkaus toiminto
+ - [ ] Palveluvaraus poista alkuvalikosta
+ - [ ] mökin muokkaus toiminto
+ - [ ] Varoitus kun poistaa isäntäkenttiä esim. Toimipisteissä
+ - [ ] ulkoasut vastaaviksi
+ 
+ Jos aikaa
+ - [ ] Tietojen tarkastukset
 
 ## USER CASE:
 -----------
