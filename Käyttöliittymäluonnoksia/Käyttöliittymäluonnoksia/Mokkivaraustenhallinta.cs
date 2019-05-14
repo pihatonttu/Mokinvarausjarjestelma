@@ -33,16 +33,12 @@ namespace Käyttöliittymäluonnoksia
             string yhteysteksti = @"server=85.23.149.196;port=3306;userid=admin;password=admin123;database=mokkitietokanta";
 
             //Tällä kyselyllä haetaan tieto mysql tietokannasta
-            string kysely = @"SELECT mökki.mökki_id, mökki.nimi, mökki.osoite, mökki.hinta, mökki.kuvaus, mökki_varaus.lkm, 
+            string kysely = @"SELECT mökki.mökki_id, mökki.nimi, mökki.osoite, mökki.hinta, mökki.kuvaus, mökki_varaus.lkm, mökki_varaus.varaus_id,
                               mökki_varaus.alkamispäivämäärä, mökki_varaus.loppumispäivämäärä, asiakas.etunimi, asiakas.sukunimi, varaus.varattu_pvm
                               FROM mökki
                               INNER JOIN mökki_varaus ON mökki.mökki_id = mökki_varaus.mökki_id
                               INNER JOIN varaus ON mökki_varaus.varaus_id = varaus.varaus_id
                               INNER JOIN asiakas ON varaus.asiakas_id = asiakas.asiakas_id";
-            /*string kysely = @"SELECT mökki.mökki_id, mökki.nimi, mökki.osoite, mökki.kuvaus, mökki_varaus.lkm, mökki_varaus.alkamispäivämäärä, mökki_varaus.loppumispäivämäärä
-                              FROM mökki
-                              RIGHT JOIN mökki_varaus ON mökki.mökki_id = mökki_varaus.mökki_id";*/
-
 
             using (MySqlConnection yhteys = new MySqlConnection(yhteysteksti))
             {
@@ -89,17 +85,13 @@ namespace Käyttöliittymäluonnoksia
             label6.Enabled = false;
         }
 
-        private void Lisaa_tietue() {
-            string kysely = @"INSERT INTO `mökki` (`nimi`, `osoite`, `mökki_id`, `kuvaus`) 
-                            VALUES('mökki1', 'opistotie', '1', 'Tämä on hyvä mökki')";
-        }
-
         private void button3_Click(object sender, EventArgs e)
         {
             int lkm = int.Parse(this.dataGridVaraus.SelectedRows[0].Cells["lkm"].Value.ToString());
             DateTime alku = DateTime.Parse(this.dataGridVaraus.SelectedRows[0].Cells["alkamispäivämäärä"].Value.ToString());
             DateTime loppu = DateTime.Parse(this.dataGridVaraus.SelectedRows[0].Cells["loppumispäivämäärä"].Value.ToString());
-            new Muokkaa_mokkivaraus(lkm, alku, loppu).ShowDialog();
+            int id = int.Parse(this.dataGridVaraus.SelectedRows[0].Cells["varaus_id"].Value.ToString());
+            new Muokkaa_mokkivaraus(lkm, alku, loppu, id).ShowDialog();
         }
     }
 }
