@@ -27,9 +27,13 @@ namespace Käyttöliittymäluonnoksia
             DataTable dt = new DataTable();
 
 
+            string kysely = @"SELECT mökki.nimi, mökki.osoite, lasku.nimi, lasku.lahiosoite, lasku.postitoimipaikka, lasku.postinro, lasku.summa, lasku.alv, lasku.Maksettu
+                              FROM lasku
+                              INNER JOIN mökki_varaus ON lasku.varaus_id = mökki_varaus.varaus_id
+                              INNER JOIN mökki ON mökki_varaus.mökki_id = mökki.mökki_id";
 
             //Tällä kyselyllä haetaan tieto mysql tietokannasta
-            string kysely = "SELECT * FROM lasku";
+            //string kysely = "SELECT * FROM lasku";
 
 
             using (MySqlConnection yhteys = new MySqlConnection(yhteysteksti))

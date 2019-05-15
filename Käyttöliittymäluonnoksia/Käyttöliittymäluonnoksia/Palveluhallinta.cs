@@ -26,9 +26,10 @@ namespace Käyttöliittymäluonnoksia
             InitializeComponent();
         }
 
+        //Kun formi aukeaa päivitetään lista
         private void Palveluhallinta_Load(object sender, EventArgs e)
         {
-            ListaaMuokattu();
+            PaivitaLista();
         }
 
         //Haetaan tieto ja linkitetään se Datagridiin
@@ -62,6 +63,7 @@ namespace Käyttöliittymäluonnoksia
 
         }
 
+        //Poistetaan tietue
         private void PoistaTietue()
         {
             string palveluid;
@@ -79,7 +81,7 @@ namespace Käyttöliittymäluonnoksia
                     MySqlDataReader reader = cmd.ExecuteReader();
                     yhteys.Close();
                 }
-
+                //Poistetaan rivi näkyvistä
                 this.dataGridPalvelu.Rows.RemoveAt(this.dataGridPalvelu.SelectedRows[0].Index);
             }   
         }
@@ -97,30 +99,26 @@ namespace Käyttöliittymäluonnoksia
             //Viedään ne toiseen formiin
             new PalveluLisaaTietue(palveluid, toimipiste_id, nimi,kuvaus,hinta,alv).ShowDialog();
             //Kun palataan niin päivitetään lista
-            ListaaMuokattu();
+            PaivitaLista();
         }
 
+        //Lisää nappi
         private void button1_Click(object sender, EventArgs e)
         {
             new PalveluLisaaTietue().ShowDialog();
-            ListaaMuokattu();
-            Debug.WriteLine("toimii");
+            PaivitaLista();
         }
 
+        //Poistonappi
         private void button2_Click(object sender, EventArgs e)
         {
             PoistaTietue();
         }
 
+        //Muokkaa nappi
         private void button3_Click(object sender, EventArgs e)
         {
             MuokkaaTietue();
-        }
-
-        private void ListaaMuokattu()
-        {
-            Thread listanpaivitys = new Thread(new ThreadStart(PaivitaLista));
-            listanpaivitys.Start();
         }
     }
 }
