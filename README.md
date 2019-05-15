@@ -15,17 +15,22 @@ Ryhmän jäsenet:
 
 
 ### TODO:
- - [ ] Lisää mökkki varaus taulu
- - [ ] Lisää palvelu varaus
+ - [x] Lisää mökkki varaus
+ - [ ] Lisää palvelu varaus MÖNÖ
  
- - [ ] Poista kaikki suodatukset
+ - [ ] Poista kaikki suodatukset JUHIS
 
- - [ ] Laskut taulu muokkaus toiminto ja id näytöt
+ - [ ] Laskut taulu id:t toimintaan SAMU
  - [ ] Asiakas taulu muokkaus toiminto
- - [ ] Palveluvaraus poista alkuvalikosta
- - [ ] mökin muokkaus toiminto
+ - [x] mökin muokkaus toiminto
  - [ ] Varoitus kun poistaa isäntäkenttiä esim. Toimipisteissä
  - [ ] ulkoasut vastaaviksi
+           datagrid 
+           editmode: editProgrammably
+           allowuseredit: false
+           allowuserdelete: false
+           allowuserorder: true   
+           size: 819, 622
  
  Jos aikaa
  - [ ] Tietojen tarkastukset
