@@ -146,6 +146,12 @@ namespace Käyttöliittymäluonnoksia
                                VALUES ('" + varaus_id + "', '" + mökki_id + "', '" + lkm + "', '" + alkamispvm + "', '" + loppumispvm + "')";
             
             LisaaTietoja(kysely2);
+            
+            double mokinhinta = double.Parse(Get_string("mökki WHERE mökki_id = " + comboBox3.SelectedValue.ToString(), "hinta"));
+            double alv = 24;
+            string kysely3 = "INSERT INTO lasku (varaus_id, asiakas_id, summa, alv) " +
+                             "VALUES ('"+varaus_id+ "','" + asiakas_id + "','" + mokinhinta + "','" + alv + "')";
+            LisaaTietoja(kysely3);
         }
 
         private void button3_Click(object sender, EventArgs e)
