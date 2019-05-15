@@ -18,13 +18,12 @@ Ryhmän jäsenet:
  - [x] Lisää mökkki varaus
  - [ ] Lisää palvelu varaus MÖNÖ
  
- - [ ] Poista kaikki suodatukset JUHIS
+ - [x] Poista kaikki suodatukset JUHIS
 
- - [ ] Laskut taulu id:t toimintaan SAMU
- - [ ] Asiakas taulu muokkaus toiminto
+ - [x] Laskut taulu id:t toimintaan SAMU
+ - [x] Asiakas taulu muokkaus toiminto
  - [x] mökin muokkaus toiminto
- - [ ] Varoitus kun poistaa isäntäkenttiä esim. Toimipisteissä
- - [ ] ulkoasut vastaaviksi
+ - [x] ulkoasut vastaaviksi
            datagrid 
            editmode: editProgrammably
            allowuseredit: false
@@ -33,7 +32,7 @@ Ryhmän jäsenet:
            size: 819, 622
  
  Jos aikaa
- - [ ] Tietojen tarkastukset
+ - [x] Tietojen tarkastukset
 
 ## USER CASE:
 -----------
