@@ -26,15 +26,11 @@ namespace Käyttöliittymäluonnoksia
         {
             DataTable dt = new DataTable();
 
-
-            string kysely = @"SELECT mökki.nimi, mökki.osoite, lasku.nimi, lasku.lahiosoite, lasku.postitoimipaikka, lasku.postinro, lasku.summa, lasku.alv, lasku.Maksettu
+            string kysely = @"SELECT mökki.nimi, mökki.osoite, asiakas.etunimi, asiakas.sukunimi, asiakas.lahiosoite, lasku.summa, lasku.alv, lasku.Maksettu
                               FROM lasku
                               INNER JOIN mökki_varaus ON lasku.varaus_id = mökki_varaus.varaus_id
-                              INNER JOIN mökki ON mökki_varaus.mökki_id = mökki.mökki_id";
-
-            //Tällä kyselyllä haetaan tieto mysql tietokannasta
-            //string kysely = "SELECT * FROM lasku";
-
+                              INNER JOIN mökki ON mökki_varaus.mökki_id = mökki.mökki_id
+                              INNER JOIN asiakas ON lasku.asiakas_id = asiakas.asiakas_id";
 
             using (MySqlConnection yhteys = new MySqlConnection(yhteysteksti))
             {
@@ -74,11 +70,6 @@ namespace Käyttöliittymäluonnoksia
         private void poistabtn_Click(object sender, EventArgs e)
         {
             PoistaTietue();
-        }
-
-        private void lisaabtn_Click(object sender, EventArgs e)
-        {
-            new Lisaalasku().Show();
         }
 
         private void Laskujenhallinta_Load(object sender, EventArgs e)

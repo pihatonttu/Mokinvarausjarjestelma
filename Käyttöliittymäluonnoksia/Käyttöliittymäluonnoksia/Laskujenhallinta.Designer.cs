@@ -30,8 +30,6 @@
         {
             this.label1 = new System.Windows.Forms.Label();
             this.dataGridLasku = new System.Windows.Forms.DataGridView();
-            this.lisaabtn = new System.Windows.Forms.Button();
-            this.muokkaabtn = new System.Windows.Forms.Button();
             this.poistabtn = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridLasku)).BeginInit();
             this.SuspendLayout();
@@ -56,38 +54,17 @@
             this.dataGridLasku.Cursor = System.Windows.Forms.Cursors.Default;
             this.dataGridLasku.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
             this.dataGridLasku.Location = new System.Drawing.Point(23, 49);
-            this.dataGridLasku.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dataGridLasku.Margin = new System.Windows.Forms.Padding(4);
             this.dataGridLasku.Name = "dataGridLasku";
             this.dataGridLasku.RowHeadersVisible = false;
             this.dataGridLasku.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridLasku.Size = new System.Drawing.Size(819, 622);
             this.dataGridLasku.TabIndex = 1;
             // 
-            // lisaabtn
-            // 
-            this.lisaabtn.Location = new System.Drawing.Point(741, 692);
-            this.lisaabtn.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.lisaabtn.Name = "lisaabtn";
-            this.lisaabtn.Size = new System.Drawing.Size(100, 28);
-            this.lisaabtn.TabIndex = 2;
-            this.lisaabtn.Text = "Lisää";
-            this.lisaabtn.UseVisualStyleBackColor = true;
-            this.lisaabtn.Click += new System.EventHandler(this.lisaabtn_Click);
-            // 
-            // muokkaabtn
-            // 
-            this.muokkaabtn.Location = new System.Drawing.Point(131, 689);
-            this.muokkaabtn.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.muokkaabtn.Name = "muokkaabtn";
-            this.muokkaabtn.Size = new System.Drawing.Size(100, 28);
-            this.muokkaabtn.TabIndex = 3;
-            this.muokkaabtn.Text = "Muokkaa";
-            this.muokkaabtn.UseVisualStyleBackColor = true;
-            // 
             // poistabtn
             // 
             this.poistabtn.Location = new System.Drawing.Point(23, 689);
-            this.poistabtn.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.poistabtn.Margin = new System.Windows.Forms.Padding(4);
             this.poistabtn.Name = "poistabtn";
             this.poistabtn.Size = new System.Drawing.Size(100, 28);
             this.poistabtn.TabIndex = 4;
@@ -99,13 +76,11 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(857, 735);
+            this.ClientSize = new System.Drawing.Size(872, 735);
             this.Controls.Add(this.poistabtn);
-            this.Controls.Add(this.muokkaabtn);
-            this.Controls.Add(this.lisaabtn);
             this.Controls.Add(this.dataGridLasku);
             this.Controls.Add(this.label1);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "Laskujenhallinta";
             this.Text = "Laskujenhallinta";
             this.Load += new System.EventHandler(this.Laskujenhallinta_Load);
@@ -119,8 +94,6 @@
 
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.DataGridView dataGridLasku;
-        private System.Windows.Forms.Button lisaabtn;
-        private System.Windows.Forms.Button muokkaabtn;
         private System.Windows.Forms.Button poistabtn;
     }
 }
