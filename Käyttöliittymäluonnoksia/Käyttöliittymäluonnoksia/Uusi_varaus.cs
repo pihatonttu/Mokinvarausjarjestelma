@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -148,12 +149,31 @@ namespace Käyttöliittymäluonnoksia
                                VALUES ('" + varaus_id + "', '" + mökki_id + "', '" + lkm + "', '" + alkamispvm + "', '" + loppumispvm + "')";
             
             LisaaTietoja(kysely2);
-            
-            double mokinhinta = double.Parse(Get_string("mökki WHERE mökki_id = " + comboBox3.SelectedValue.ToString(), "hinta"));
+
+            //Laskun tekeminen
+            double mokinhinta = double.Parse(Get_string("mökki WHERE mökki_id = " + comboBox3.SelectedValue.ToString(),"hinta"));
             double alv = 24;
-            string kysely3 = "INSERT INTO lasku (varaus_id, asiakas_id, summa, alv) " +
-                             "VALUES ('"+varaus_id+ "','" + asiakas_id + "','" + mokinhinta + "','" + alv + "')";
+            string kysely3;
+
+            //Tarkistetaan onko jo jotain laskua tälle varaukselle kuten palvelua
+            string onkojojotain = Get_string("lasku WHERE varaus_id = "+varaus_id,"varaus_id");
+            if (onkojojotain != "")
+            {
+                Debug.WriteLine(Get_string("lasku WHERE varaus_id =" + varaus_id,"summa"));
+                double edsumma = double.Parse(Get_string("lasku WHERE varaus_id ="+varaus_id,"summa"));
+                mokinhinta += edsumma;  //Jos on niin lisätään se summaan
+                kysely3 = @"UPDATE lasku SET summa='" + mokinhinta +"' WHERE varaus_id='" + varaus_id + "';";
+            }
+            else{
+                //Jos edellistä ei löydetty luodaan uusi lasku
+                kysely3 = "INSERT INTO lasku (varaus_id, asiakas_id, summa, alv) " +
+                 "VALUES ('" + varaus_id + "','" + asiakas_id + "','" + mokinhinta + "','" + alv + "')";
+            }
+            
+            //Lähetetään kysely serverille
             LisaaTietoja(kysely3);
+
+            this.Close();
         }
 
         private void button3_Click(object sender, EventArgs e)

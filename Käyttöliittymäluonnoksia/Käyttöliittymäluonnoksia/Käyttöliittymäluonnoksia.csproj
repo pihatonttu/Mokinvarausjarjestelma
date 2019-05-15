@@ -186,6 +186,9 @@
     <EmbeddedResource Include="PalveluLisaaTietue.resx">
       <DependentUpon>PalveluLisaaTietue.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Seuranta.resx">
+      <DependentUpon>Seuranta.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Toimipisteidenhallinta.resx">
       <DependentUpon>Toimipisteidenhallinta.cs</DependentUpon>
     </EmbeddedResource>
