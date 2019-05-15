@@ -24,7 +24,7 @@ namespace Käyttöliittymäluonnoksia
             postitoimitxtbox.Text = postitoimipaikka;
             postinrotxtbox.Text = postinro;
             emailtxtbox.Text = email;
-            puhelinnrotxtbox.Text = email;
+            puhelinnrotxtbox.Text = puhelinnro;
 
         }
 

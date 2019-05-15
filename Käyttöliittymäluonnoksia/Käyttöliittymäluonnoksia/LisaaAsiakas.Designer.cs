@@ -207,6 +207,7 @@
             this.Controls.Add(this.button1);
             this.Name = "LisaaAsiakas";
             this.Text = "Lisää uusi asiakas";
+            this.Load += new System.EventHandler(this.LisaaAsiakas_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

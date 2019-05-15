@@ -40,7 +40,7 @@ namespace Käyttöliittymäluonnoksia
 
                 if (dt.Rows.Count > 0)
                 {
-                    dataGridView1.DataSource = dt;
+                    dataGridAsiakas.DataSource = dt;
                 }
             }
         }
@@ -48,9 +48,9 @@ namespace Käyttöliittymäluonnoksia
         private void PoistaTietue()
         {
             string asiakasid;
-            if (dataGridView1.SelectedRows.Count != 0)
+            if (dataGridAsiakas.SelectedRows.Count != 0)
             {
-                asiakasid = this.dataGridView1.SelectedRows[0].Cells["asiakas_id"].Value.ToString();
+                asiakasid = this.dataGridAsiakas.SelectedRows[0].Cells["asiakas_id"].Value.ToString();
 
                 //Tietueen poisto koodi
                 string kysely = @"DELETE FROM asiakas WHERE asiakas_id=" + asiakasid;
@@ -77,12 +77,26 @@ namespace Käyttöliittymäluonnoksia
 
         private void button1_Click(object sender, EventArgs e)
         {
+
             new LisaaAsiakas().ShowDialog();
         }
 
         private void label1_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            int asiakasid = int.Parse(this.dataGridAsiakas.SelectedRows[0].Cells["asiakas_id"].Value.ToString());
+            string etunimi = this.dataGridAsiakas.SelectedRows[0].Cells["etunimi"].Value.ToString();
+            string sukunimi = this.dataGridAsiakas.SelectedRows[0].Cells["sukunimi"].Value.ToString();
+            string lahiosoite = this.dataGridAsiakas.SelectedRows[0].Cells["lahiosoite"].Value.ToString();
+            string postitoimipaikka = this.dataGridAsiakas.SelectedRows[0].Cells["postitoimipaikka"].Value.ToString();
+            string postinro = this.dataGridAsiakas.SelectedRows[0].Cells["postinro"].Value.ToString();
+            string email = this.dataGridAsiakas.SelectedRows[0].Cells["email"].Value.ToString();
+            string puhelinnro = this.dataGridAsiakas.SelectedRows[0].Cells["puhelinnro"].Value.ToString();
+            new LisaaAsiakas(asiakasid, etunimi, sukunimi, lahiosoite, postitoimipaikka, postinro, email, puhelinnro).ShowDialog();
         }
     }
 }

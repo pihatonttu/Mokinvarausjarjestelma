@@ -14,27 +14,59 @@ namespace Käyttöliittymäluonnoksia
 {
     public partial class LisaaMokki : Form
     {
+        bool muokkaa = false;
+        string nimi, osoite, kuvaus;
+        int mökkiid, hinta;
+
         public LisaaMokki()
         {
             InitializeComponent();
         }
 
+        public LisaaMokki(string nimi, string osoite, int mökkiid, string kuvaus,int hinta)
+        {           
+            InitializeComponent();
+            this.nimi = nimi;
+            this.osoite = osoite;
+            this.kuvaus = kuvaus;
+            this.mökkiid = mökkiid;
+            this.hinta = hinta;
+            muokkaa = true;
+        }
+
+        private void LisaaMokki_Load(object sender, EventArgs e)
+        {
+            textBox1.Text = nimi;
+            textBox2.Text = osoite;
+            textBox4.Text = kuvaus;
+            numericUpDown1.Value = hinta;
+        }
+
 
         //Haetaan tieto ja linkitetään se Datagridiin
-        private void PalveluLisaaMokki()
+        private void lisaamuokkaaMokki()
         {
             string yhteysteksti = @"server=85.23.149.196;port=3306;userid=admin;password=admin123;database=mokkitietokanta";
 
-            String mokinNimi = textBox1.Text;
-            String mokinOsoite = textBox2.Text;
-            String mokinKuvaus = textBox4.Text;
-            string mokinHinta = numericUpDown1.Value.ToString();
+            string nimi = textBox1.Text;
+            string osoite = textBox2.Text;
+            string kuvaus = textBox4.Text;
+            string hinta = numericUpDown1.Value.ToString();
 
             if (textBox1.Text != null && textBox4.Text != null && textBox2.Text != null && numericUpDown1.Value != 0)
             {
-                //Tällä kyselyllä haetaan tieto mysql tietokannasta
-                string kysely = @"INSERT INTO mökki (nimi, osoite, kuvaus, hinta)
-                            VALUES('" + mokinNimi + "', '" + mokinOsoite + "', '" + mokinKuvaus + "', '" + mokinHinta + "'); ";
+                string kysely;
+                if (muokkaa)
+                {
+                    kysely = @"UPDATE mökki SET nimi='" + nimi + "', osoite='" + osoite + "', kuvaus='" + kuvaus + "', hinta='" + hinta + "'WHERE mökki_id='" + mökkiid + "';";
+                }
+                else
+                {
+                    //Tällä kyselyllä haetaan tieto mysql tietokannasta
+                    kysely = @"INSERT INTO mökki (nimi, osoite, kuvaus, hinta)
+                            VALUES('" + nimi + "', '" + osoite + "', '" + kuvaus + "', '" + hinta + "'); ";
+                }
+                
 
                 using (MySqlConnection yhteys = new MySqlConnection(yhteysteksti))
                 {
@@ -53,7 +85,12 @@ namespace Käyttöliittymäluonnoksia
 
         private void button1_Click(object sender, EventArgs e)
         {
-            PalveluLisaaMokki();
+            lisaamuokkaaMokki();
+
+            if (muokkaa)
+            {
+
+            }
         }
 
         private void button2_Click(object sender, EventArgs e)

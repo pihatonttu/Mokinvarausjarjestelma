@@ -39,7 +39,7 @@ namespace Käyttöliittymäluonnoksia
 
                 if (dt.Rows.Count > 0)
                 {
-                    dataGridView1.DataSource = dt;
+                    dataGridMokki.DataSource = dt;
                 }
             }
         }
@@ -47,9 +47,9 @@ namespace Käyttöliittymäluonnoksia
         private void PoistaTietue()
         {
             string mökkiid;
-            if (dataGridView1.SelectedRows.Count != 0)
+            if (dataGridMokki.SelectedRows.Count != 0)
             {
-                mökkiid = this.dataGridView1.SelectedRows[0].Cells["mökki_id"].Value.ToString();
+                mökkiid = this.dataGridMokki.SelectedRows[0].Cells["mökki_id"].Value.ToString();
 
                 //Tietueen poisto koodi
                 string kysely = @"DELETE FROM mökki WHERE mökki_id=" + mökkiid;
@@ -79,6 +79,17 @@ namespace Käyttöliittymäluonnoksia
         private void button4_Click(object sender, EventArgs e)
         {
             PoistaTietue();
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            
+            string nimi = this.dataGridMokki.SelectedRows[0].Cells["nimi"].Value.ToString();
+            string osoite = this.dataGridMokki.SelectedRows[0].Cells["osoite"].Value.ToString();
+            int mökkiid = int.Parse(this.dataGridMokki.SelectedRows[0].Cells["mökki_id"].Value.ToString());
+            string kuvaus = this.dataGridMokki.SelectedRows[0].Cells["kuvaus"].Value.ToString();
+            int hinta = int.Parse(this.dataGridMokki.SelectedRows[0].Cells["hinta"].Value.ToString());
+            new LisaaMokki(nimi, osoite, mökkiid, kuvaus, hinta).Show();
         }
     }
 }
