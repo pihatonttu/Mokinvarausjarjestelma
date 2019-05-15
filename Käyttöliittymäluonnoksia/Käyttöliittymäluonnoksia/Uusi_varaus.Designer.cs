@@ -35,6 +35,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.label16 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
@@ -57,7 +58,7 @@
             this.label13 = new System.Windows.Forms.Label();
             this.label15 = new System.Windows.Forms.Label();
             this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
-            this.label16 = new System.Windows.Forms.Label();
+            this.button3 = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -143,6 +144,16 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Varauksen tiedot";
             // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label16.Location = new System.Drawing.Point(22, 109);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(146, 16);
+            this.label16.TabIndex = 8;
+            this.label16.Text = "Henkilöiden lukumäärä";
+            // 
             // label8
             // 
             this.label8.AutoSize = true;
@@ -226,6 +237,7 @@
             // 
             // button2
             // 
+            this.button2.Enabled = false;
             this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button2.Location = new System.Drawing.Point(402, 472);
             this.button2.Name = "button2";
@@ -359,21 +371,22 @@
             this.numericUpDown1.Size = new System.Drawing.Size(62, 20);
             this.numericUpDown1.TabIndex = 35;
             // 
-            // label16
+            // button3
             // 
-            this.label16.AutoSize = true;
-            this.label16.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label16.Location = new System.Drawing.Point(22, 109);
-            this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(146, 16);
-            this.label16.TabIndex = 8;
-            this.label16.Text = "Henkilöiden lukumäärä";
+            this.button3.Location = new System.Drawing.Point(303, 61);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(75, 23);
+            this.button3.TabIndex = 36;
+            this.button3.Text = "Uusi asiakas";
+            this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // Uusi_varaus
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(731, 515);
+            this.Controls.Add(this.button3);
             this.Controls.Add(this.numericUpDown1);
             this.Controls.Add(this.label15);
             this.Controls.Add(this.groupBox3);
@@ -439,6 +452,7 @@
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.NumericUpDown numericUpDown1;
         private System.Windows.Forms.Label label16;
+        private System.Windows.Forms.Button button3;
     }
 }
 

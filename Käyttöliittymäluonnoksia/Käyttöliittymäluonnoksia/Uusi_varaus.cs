@@ -76,6 +76,8 @@ namespace Käyttöliittymäluonnoksia
             label11.Text = Get_string("mökki", "nimi", id);
             label12.Text = Get_string("mökki", "osoite", id);
             label13.Text = Get_string("mökki", "hinta", id);
+
+            button2.Enabled = true;
         }
 
         private string Get_string(string table, string column, int id)
@@ -128,7 +130,6 @@ namespace Käyttöliittymäluonnoksia
             string asiakas_id = comboBox1.SelectedValue.ToString();
             string toimipiste_id = comboBox2.SelectedValue.ToString();
             string varattu_pvm = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
-            string varaus_id = Get_string("varaus", "MAX(varaus_id)");
             string mökki_id = comboBox3.SelectedValue.ToString();
             string lkm = numericUpDown1.Value.ToString();
             string alkamispvm = dateTimePicker1.Value.ToString("yyyy-MM-dd HH:mm:ss");
@@ -136,12 +137,25 @@ namespace Käyttöliittymäluonnoksia
 
             string kysely1 = @"INSERT INTO varaus (asiakas_id, toimipiste_id, varattu_pvm)
                                VALUES ('" + asiakas_id + "', '" + toimipiste_id + "', '" + varattu_pvm + "')";
-            
-            string kysely2 = @"INSERT INTO mökki_varaus (varaus_id, mökki_id, lkm, alkamispäivämäärä, loppumispäivämäärä)
-                               VALUES ('" + varaus_id + "', '" + mökki_id + "', '" + lkm + "', '" + alkamispvm + "', '" + loppumispvm + "')";
 
             LisaaTietoja(kysely1);
+
+            string varaus_id = Get_string("varaus", "MAX(varaus_id)");
+
+            string kysely2 = @"INSERT INTO mökki_varaus (varaus_id, mökki_id, lkm, alkamispäivämäärä, loppumispäivämäärä)
+                               VALUES ('" + varaus_id + "', '" + mökki_id + "', '" + lkm + "', '" + alkamispvm + "', '" + loppumispvm + "')";
+            
             LisaaTietoja(kysely2);
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            new LisaaAsiakas().ShowDialog();
+            DataTable table = LinkitaTietokanta("asiakas");
+            table.Columns.Add("nimi", typeof(string), "etunimi + ' ' + sukunimi");
+            comboBox1.DataSource = table;
+            comboBox1.ValueMember = "asiakas_id";
+            comboBox1.DisplayMember = "nimi";
         }
     }
 }
