@@ -133,6 +133,12 @@
     <Compile Include="PalveluLisaaTietue.Designer.cs">
       <DependentUpon>PalveluLisaaTietue.cs</DependentUpon>
     </Compile>
+    <Compile Include="Seuranta.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Seuranta.Designer.cs">
+      <DependentUpon>Seuranta.cs</DependentUpon>
+    </Compile>
     <Compile Include="Toimipisteidenhallinta.cs">
       <SubType>Form</SubType>
     </Compile>
