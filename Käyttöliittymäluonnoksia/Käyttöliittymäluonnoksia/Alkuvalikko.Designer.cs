@@ -45,6 +45,7 @@
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.label3 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.label4 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
@@ -62,23 +63,24 @@
             // varausbtn
             // 
             this.varausbtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
-            this.varausbtn.Location = new System.Drawing.Point(12, 116);
+            this.varausbtn.Location = new System.Drawing.Point(12, 366);
             this.varausbtn.Name = "varausbtn";
             this.varausbtn.Size = new System.Drawing.Size(217, 54);
             this.varausbtn.TabIndex = 1;
-            this.varausbtn.Text = "Mökkien varaukset";
+            this.varausbtn.Text = "Mökkivaraustenhallinta";
             this.varausbtn.UseVisualStyleBackColor = true;
             this.varausbtn.Click += new System.EventHandler(this.varausbtn_Click);
             // 
             // laskubtn
             // 
             this.laskubtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
-            this.laskubtn.Location = new System.Drawing.Point(12, 296);
+            this.laskubtn.Location = new System.Drawing.Point(12, 116);
             this.laskubtn.Name = "laskubtn";
             this.laskubtn.Size = new System.Drawing.Size(217, 54);
             this.laskubtn.TabIndex = 2;
             this.laskubtn.Text = "Laskutus";
             this.laskubtn.UseVisualStyleBackColor = true;
+            this.laskubtn.Click += new System.EventHandler(this.laskubtn_Click);
             // 
             // mökkibtn
             // 
@@ -98,7 +100,7 @@
             this.palvelubtn.Name = "palvelubtn";
             this.palvelubtn.Size = new System.Drawing.Size(83, 32);
             this.palvelubtn.TabIndex = 4;
-            this.palvelubtn.Text = "Palvelu";
+            this.palvelubtn.Text = "Palvelut";
             this.palvelubtn.UseVisualStyleBackColor = true;
             this.palvelubtn.Click += new System.EventHandler(this.palvelubtn_Click);
             // 
@@ -120,18 +122,18 @@
             this.lisavarausbtn.Name = "lisavarausbtn";
             this.lisavarausbtn.Size = new System.Drawing.Size(106, 54);
             this.lisavarausbtn.TabIndex = 6;
-            this.lisavarausbtn.Text = "mökki";
+            this.lisavarausbtn.Text = "Mökki";
             this.lisavarausbtn.UseVisualStyleBackColor = true;
             this.lisavarausbtn.Click += new System.EventHandler(this.lisavarausbtn_Click);
             // 
             // asiakasbtn
             // 
             this.asiakasbtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
-            this.asiakasbtn.Location = new System.Drawing.Point(12, 236);
+            this.asiakasbtn.Location = new System.Drawing.Point(12, 306);
             this.asiakasbtn.Name = "asiakasbtn";
             this.asiakasbtn.Size = new System.Drawing.Size(217, 54);
             this.asiakasbtn.TabIndex = 7;
-            this.asiakasbtn.Text = "Asiakkaat";
+            this.asiakasbtn.Text = "Asiakashallinta";
             this.asiakasbtn.UseVisualStyleBackColor = true;
             this.asiakasbtn.Click += new System.EventHandler(this.asiakasbtn_Click);
             // 
@@ -142,7 +144,7 @@
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(105, 54);
             this.button1.TabIndex = 8;
-            this.button1.Text = "palvelu";
+            this.button1.Text = "Palvelu";
             this.button1.UseVisualStyleBackColor = true;
             // 
             // button2
@@ -152,7 +154,7 @@
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(217, 54);
             this.button2.TabIndex = 9;
-            this.button2.Text = "Palveluiden varaukset";
+            this.button2.Text = "Etsi varauksia";
             this.button2.UseVisualStyleBackColor = true;
             // 
             // contextMenuStrip1
@@ -183,7 +185,7 @@
             // 
             // progressBar1
             // 
-            this.progressBar1.Location = new System.Drawing.Point(12, 562);
+            this.progressBar1.Location = new System.Drawing.Point(12, 568);
             this.progressBar1.MarqueeAnimationSpeed = 20;
             this.progressBar1.Name = "progressBar1";
             this.progressBar1.Size = new System.Drawing.Size(190, 23);
@@ -215,6 +217,16 @@
             this.panel1.Size = new System.Drawing.Size(437, 516);
             this.panel1.TabIndex = 14;
             // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Location = new System.Drawing.Point(29, 568);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(152, 20);
+            this.label4.TabIndex = 15;
+            this.label4.Text = "Yhteys muodostettu";
+            // 
             // Alkuvalikko
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -224,6 +236,7 @@
             this.Controls.Add(this.label3);
             this.Controls.Add(this.progressBar1);
             this.Controls.Add(this.label1);
+            this.Controls.Add(this.label4);
             this.Name = "Alkuvalikko";
             this.Text = "Alkuvalikko";
             this.Load += new System.EventHandler(this.Alkuvalikko_Load_1);
@@ -253,5 +266,6 @@
         private System.Windows.Forms.ProgressBar progressBar1;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Label label4;
     }
 }

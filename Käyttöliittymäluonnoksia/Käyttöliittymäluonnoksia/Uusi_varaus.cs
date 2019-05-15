@@ -95,6 +95,23 @@ namespace Käyttöliittymäluonnoksia
             }
         }
 
+        private string Get_string(string table, string column)
+        {
+            string yhteysteksti = @"server=85.23.149.196;port=3306;userid=admin;password=admin123;database=mokkitietokanta";
+            string kysely = "SELECT " + column + " FROM " + table;
+            string txt = "";
+            using (MySqlConnection yhteys = new MySqlConnection(yhteysteksti)) {
+                MySqlCommand cmd = new MySqlCommand(kysely, yhteys);
+                yhteys.Open();
+                MySqlDataReader reader = cmd.ExecuteReader();
+                while (reader.Read()) {
+                    txt = reader.GetString(0);
+                }
+                yhteys.Close();
+                return txt;
+            }
+        }
+
         private void LisaaTietoja(string kysely)
         {
             string yhteysteksti = @"server=85.23.149.196;port=3306;userid=admin;password=admin123;database=mokkitietokanta";
@@ -111,21 +128,20 @@ namespace Käyttöliittymäluonnoksia
             string asiakas_id = comboBox1.SelectedValue.ToString();
             string toimipiste_id = comboBox2.SelectedValue.ToString();
             string varattu_pvm = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
-
-            string kysely1 = @"INSERT INTO varaus (asiakas_id, toimipiste_id, varattu_pvm)
-                               VALUES ('" + asiakas_id + "', '" + toimipiste_id + "', '" + varattu_pvm + "')";
-
-            string varaus_id = "";
+            string varaus_id = Get_string("varaus", "MAX(varaus_id)");
             string mökki_id = comboBox3.SelectedValue.ToString();
             string lkm = numericUpDown1.Value.ToString();
             string alkamispvm = dateTimePicker1.Value.ToString("yyyy-MM-dd HH:mm:ss");
             string loppumispvm = dateTimePicker2.Value.ToString("yyyy-MM-dd HH:mm:ss");
 
+            string kysely1 = @"INSERT INTO varaus (asiakas_id, toimipiste_id, varattu_pvm)
+                               VALUES ('" + asiakas_id + "', '" + toimipiste_id + "', '" + varattu_pvm + "')";
+            
             string kysely2 = @"INSERT INTO mökki_varaus (varaus_id, mökki_id, lkm, alkamispäivämäärä, loppumispäivämäärä)
                                VALUES ('" + varaus_id + "', '" + mökki_id + "', '" + lkm + "', '" + alkamispvm + "', '" + loppumispvm + "')";
 
-            //LisaaTietoja(kysely1);
-            //LisaaTietoja(kysely2);
+            LisaaTietoja(kysely1);
+            LisaaTietoja(kysely2);
         }
     }
 }

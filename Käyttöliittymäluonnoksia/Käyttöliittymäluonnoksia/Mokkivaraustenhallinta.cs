@@ -32,7 +32,7 @@ namespace Käyttöliittymäluonnoksia
             string yhteysteksti = @"server=85.23.149.196;port=3306;userid=admin;password=admin123;database=mokkitietokanta";
 
             //Tällä kyselyllä haetaan tieto mysql tietokannasta
-            string kysely = @"SELECT mökki.mökki_id, mökki.nimi, mökki.osoite, mökki.hinta, mökki.kuvaus, mökki_varaus.lkm, mökki_varaus.varaus_id,
+            string kysely = @"SELECT varaus.varaus_id, mökki.mökki_id, mökki.nimi, mökki.osoite, mökki.hinta, mökki.kuvaus, mökki_varaus.lkm, 
                               mökki_varaus.alkamispäivämäärä, mökki_varaus.loppumispäivämäärä, asiakas.etunimi, asiakas.sukunimi, varaus.varattu_pvm
                               FROM mökki
                               INNER JOIN mökki_varaus ON mökki.mökki_id = mökki_varaus.mökki_id
@@ -70,6 +70,33 @@ namespace Käyttöliittymäluonnoksia
         private void button1_Click(object sender, EventArgs e)
         {
             new Uusi_varaus().Show();
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            PoistaTietue();
+        }
+
+        private void PoistaTietue()
+        {
+            string yhteysteksti = @"server=85.23.149.196;port=3306;userid=admin;password=admin123;database=mokkitietokanta";
+            string varausid;
+
+            if (dataGridVaraus.SelectedRows.Count != 0) {
+                varausid = this.dataGridVaraus.SelectedRows[0].Cells["varaus_id"].Value.ToString();
+
+                //Tietueen poisto koodi
+                string kysely = @"DELETE FROM varaus WHERE varaus_id=" + varausid;
+
+                using (MySqlConnection yhteys = new MySqlConnection(yhteysteksti)) {
+                    MySqlCommand cmd = new MySqlCommand(kysely, yhteys);
+                    yhteys.Open();
+                    MySqlDataReader reader = cmd.ExecuteReader();
+                    yhteys.Close();
+                }
+
+                this.dataGridVaraus.Rows.RemoveAt(this.dataGridVaraus.SelectedRows[0].Index);
+            }
         }
     }
 }

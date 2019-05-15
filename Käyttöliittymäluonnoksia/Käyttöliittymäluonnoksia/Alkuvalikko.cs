@@ -57,18 +57,18 @@ namespace Käyttöliittymäluonnoksia
         private void Yhteys_valmis()
         {
             if (label3.InvokeRequired) {
-                label3.Invoke(new MethodInvoker(delegate { label3.Text = "Yhteys muodostettu"; }));
+                label3.Invoke(new MethodInvoker(delegate { Controls.Remove(label3); }));
             }
             else {
-                label3.Text = "Yhteys muodostettu";
+                Controls.Remove(label3);
             }
 
             if (progressBar1.InvokeRequired) {
-                progressBar1.Invoke(new MethodInvoker(delegate { progressBar1.MarqueeAnimationSpeed = 0; panel1.Enabled = true; }));
+                progressBar1.Invoke(new MethodInvoker(delegate { Controls.Remove(progressBar1); panel1.Enabled = true; }));
             }
             else {
-                progressBar1.MarqueeAnimationSpeed = 0;
-                panel1.Enabled = false;
+                Controls.Remove(progressBar1);
+                panel1.Enabled = true;
             }
         }
 
@@ -91,6 +91,11 @@ namespace Käyttöliittymäluonnoksia
         private void asiakasbtn_Click(object sender, EventArgs e)
         {
             new Asiakashallinta().Show();
+        }
+
+        private void laskubtn_Click(object sender, EventArgs e)
+        {
+            new Laskujenhallinta().Show();
         }
     }
 }

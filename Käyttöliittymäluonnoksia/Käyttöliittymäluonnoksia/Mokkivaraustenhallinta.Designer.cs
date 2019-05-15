@@ -38,7 +38,10 @@
             // 
             // dataGridVaraus
             // 
+            this.dataGridVaraus.AllowUserToAddRows = false;
+            this.dataGridVaraus.AllowUserToDeleteRows = false;
             this.dataGridVaraus.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridVaraus.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
             this.dataGridVaraus.Location = new System.Drawing.Point(12, 36);
             this.dataGridVaraus.MultiSelect = false;
             this.dataGridVaraus.Name = "dataGridVaraus";
@@ -77,6 +80,7 @@
             this.button2.TabIndex = 18;
             this.button2.Text = "Poista";
             this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // button3
             // 
