@@ -80,6 +80,7 @@ namespace Käyttöliittymäluonnoksia
             button2.Enabled = true;
         }
 
+        //Haetaan tietokannasta tekstiä jossa id täsmää
         private string Get_string(string table, string column, int id)
         {
             string yhteysteksti = @"server=85.23.149.196;port=3306;userid=admin;password=admin123;database=mokkitietokanta";
@@ -97,6 +98,7 @@ namespace Käyttöliittymäluonnoksia
             }
         }
 
+        //Haetaan tietokannasta tekstiä
         private string Get_string(string table, string column)
         {
             string yhteysteksti = @"server=85.23.149.196;port=3306;userid=admin;password=admin123;database=mokkitietokanta";

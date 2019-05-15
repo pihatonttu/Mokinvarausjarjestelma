@@ -40,9 +40,10 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(12, 9);
+            this.label1.Location = new System.Drawing.Point(325, 9);
+            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(148, 24);
+            this.label1.Size = new System.Drawing.Size(195, 29);
             this.label1.TabIndex = 0;
             this.label1.Text = "Valitse toimipiste";
             // 
@@ -52,17 +53,20 @@
             this.dataGridToimipiste.AllowUserToDeleteRows = false;
             this.dataGridToimipiste.AllowUserToOrderColumns = true;
             this.dataGridToimipiste.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridToimipiste.Location = new System.Drawing.Point(12, 36);
+            this.dataGridToimipiste.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
+            this.dataGridToimipiste.Location = new System.Drawing.Point(16, 44);
+            this.dataGridToimipiste.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.dataGridToimipiste.Name = "dataGridToimipiste";
             this.dataGridToimipiste.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridToimipiste.Size = new System.Drawing.Size(615, 520);
+            this.dataGridToimipiste.Size = new System.Drawing.Size(820, 640);
             this.dataGridToimipiste.TabIndex = 1;
             // 
             // muokkaabtn
             // 
-            this.muokkaabtn.Location = new System.Drawing.Point(12, 562);
+            this.muokkaabtn.Location = new System.Drawing.Point(124, 692);
+            this.muokkaabtn.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.muokkaabtn.Name = "muokkaabtn";
-            this.muokkaabtn.Size = new System.Drawing.Size(75, 23);
+            this.muokkaabtn.Size = new System.Drawing.Size(100, 28);
             this.muokkaabtn.TabIndex = 2;
             this.muokkaabtn.Text = "Muokkaa";
             this.muokkaabtn.UseVisualStyleBackColor = true;
@@ -70,9 +74,10 @@
             // 
             // lisääbtn
             // 
-            this.lisääbtn.Location = new System.Drawing.Point(556, 562);
+            this.lisääbtn.Location = new System.Drawing.Point(741, 692);
+            this.lisääbtn.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.lisääbtn.Name = "lisääbtn";
-            this.lisääbtn.Size = new System.Drawing.Size(75, 23);
+            this.lisääbtn.Size = new System.Drawing.Size(100, 28);
             this.lisääbtn.TabIndex = 3;
             this.lisääbtn.Text = "Lisää";
             this.lisääbtn.UseVisualStyleBackColor = true;
@@ -80,9 +85,10 @@
             // 
             // poistabtn
             // 
-            this.poistabtn.Location = new System.Drawing.Point(93, 562);
+            this.poistabtn.Location = new System.Drawing.Point(16, 692);
+            this.poistabtn.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.poistabtn.Name = "poistabtn";
-            this.poistabtn.Size = new System.Drawing.Size(75, 23);
+            this.poistabtn.Size = new System.Drawing.Size(100, 28);
             this.poistabtn.TabIndex = 4;
             this.poistabtn.Text = "Poista";
             this.poistabtn.UseVisualStyleBackColor = true;
@@ -90,14 +96,15 @@
             // 
             // Toimipisteidenhallinta
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(643, 597);
+            this.ClientSize = new System.Drawing.Size(857, 735);
             this.Controls.Add(this.poistabtn);
             this.Controls.Add(this.lisääbtn);
             this.Controls.Add(this.muokkaabtn);
             this.Controls.Add(this.dataGridToimipiste);
             this.Controls.Add(this.label1);
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "Toimipisteidenhallinta";
             this.Text = "Toimipisteidenhallinta";
             this.Load += new System.EventHandler(this.Toimipisteidenhallinta_Load);

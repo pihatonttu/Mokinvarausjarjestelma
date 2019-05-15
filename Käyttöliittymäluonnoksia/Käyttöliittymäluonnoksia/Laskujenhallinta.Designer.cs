@@ -58,12 +58,12 @@
             this.dataGridLasku.Name = "dataGridLasku";
             this.dataGridLasku.RowHeadersVisible = false;
             this.dataGridLasku.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridLasku.Size = new System.Drawing.Size(819, 622);
+            this.dataGridLasku.Size = new System.Drawing.Size(819, 637);
             this.dataGridLasku.TabIndex = 1;
             // 
             // poistabtn
             // 
-            this.poistabtn.Location = new System.Drawing.Point(23, 689);
+            this.poistabtn.Location = new System.Drawing.Point(23, 694);
             this.poistabtn.Margin = new System.Windows.Forms.Padding(4);
             this.poistabtn.Name = "poistabtn";
             this.poistabtn.Size = new System.Drawing.Size(100, 28);

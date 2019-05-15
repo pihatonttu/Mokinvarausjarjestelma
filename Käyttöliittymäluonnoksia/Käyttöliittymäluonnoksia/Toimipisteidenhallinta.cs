@@ -39,9 +39,11 @@ namespace Käyttöliittymäluonnoksia
                 yhteys.Open();
                 MySqlDataReader reader = cmd.ExecuteReader();
                 dt.Load(reader);
+                yhteys.Close();
 
                 if (dt.Rows.Count > 0)
                 {
+                    dataGridToimipiste.DataSource = null;
                     dataGridToimipiste.DataSource = dt;
                 }
             }
@@ -63,7 +65,8 @@ namespace Käyttöliittymäluonnoksia
                     MySqlDataReader reader = cmd.ExecuteReader();
                 }
 
-
+                //Poistetaan rivi näkyvistä
+                this.dataGridToimipiste.Rows.RemoveAt(this.dataGridToimipiste.SelectedRows[0].Index);
             }
         }
 
@@ -74,7 +77,8 @@ namespace Käyttöliittymäluonnoksia
 
         private void lisääbtn_Click(object sender, EventArgs e)
         {
-            new Lisaatoimipiste().Show();
+            new Lisaatoimipiste().ShowDialog();
+            LinkitaTietokanta();
         }
 
         private void poistabtn_Click(object sender, EventArgs e)
@@ -82,8 +86,10 @@ namespace Käyttöliittymäluonnoksia
             PoistaTietue();
         }
 
+        //Muokkaa nappi
         private void muokkaabtn_Click(object sender, EventArgs e)
         {
+            //Otetaan tiedot talteen
             int toimipisteid = int.Parse(this.dataGridToimipiste.SelectedRows[0].Cells["toimipiste_id"].Value.ToString());
             string nimi = this.dataGridToimipiste.SelectedRows[0].Cells["nimi"].Value.ToString();
             string lahiosoite = this.dataGridToimipiste.SelectedRows[0].Cells["lahiosoite"].Value.ToString();
@@ -91,7 +97,12 @@ namespace Käyttöliittymäluonnoksia
             string postinro = this.dataGridToimipiste.SelectedRows[0].Cells["postinro"].Value.ToString();
             string email = this.dataGridToimipiste.SelectedRows[0].Cells["email"].Value.ToString();
             string puhelinnro = this.dataGridToimipiste.SelectedRows[0].Cells["puhelinnro"].Value.ToString();
-            new Lisaatoimipiste(toimipisteid, nimi, lahiosoite, postitoimipaikka, postinro, email, puhelinnro).Show();
+
+            //Viedään ne Lisää ikkunaan
+            new Lisaatoimipiste(toimipisteid, nimi, lahiosoite, postitoimipaikka, postinro, email, puhelinnro).ShowDialog();
+
+            //Päivitetään sen jälkeen lista
+            LinkitaTietokanta();
         }
     }
 }

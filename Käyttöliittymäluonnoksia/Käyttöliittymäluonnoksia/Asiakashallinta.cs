@@ -29,7 +29,7 @@ namespace Käyttöliittymäluonnoksia
             //Tällä kyselyllä haetaan tieto mysql tietokannasta
             string kysely = "SELECT *  FROM asiakas";
 
-
+            //Lähetetään kysely serverille
             using (MySqlConnection yhteys = new MySqlConnection(yhteysteksti))
             {
                 MySqlCommand cmd = new MySqlCommand(kysely, yhteys);
@@ -38,6 +38,7 @@ namespace Käyttöliittymäluonnoksia
                 dt.Load(reader);
                 yhteys.Close();
 
+                //Jos lista ei ole tyhjä näytetään se käyttäjälle
                 if (dt.Rows.Count > 0)
                 {
                     dataGridAsiakas.DataSource = dt;
@@ -45,16 +46,21 @@ namespace Käyttöliittymäluonnoksia
             }
         }
 
+        //Tietueen poisto funktio
         private void PoistaTietue()
         {
             string asiakasid;
+
+            //Onko valittu mitään
             if (dataGridAsiakas.SelectedRows.Count != 0)
             {
+                //Otetaan talteen ensimmäisen valitun asiakas id
                 asiakasid = this.dataGridAsiakas.SelectedRows[0].Cells["asiakas_id"].Value.ToString();
 
-                //Tietueen poisto koodi
+                //Tietueen poisto mysql kysely
                 string kysely = @"DELETE FROM asiakas WHERE asiakas_id=" + asiakasid;
 
+                //Otetaan yhteys serveriin ja lähetetään poisto mysql kysely sinne
                 using (MySqlConnection yhteys = new MySqlConnection(yhteysteksti))
                 {
                     MySqlCommand cmd = new MySqlCommand(kysely, yhteys);
@@ -62,32 +68,34 @@ namespace Käyttöliittymäluonnoksia
                     MySqlDataReader reader = cmd.ExecuteReader();
                     yhteys.Close();
                 }
+                //Poistetaan rivi näkyvistä
+                this.dataGridAsiakas.Rows.RemoveAt(this.dataGridAsiakas.SelectedRows[0].Index);
             }
         }
 
+        //formin latautuessa
         private void Asiakashallinta_Load(object sender, EventArgs e)
         {
             LinkitaTietokanta();
         }
 
+        //Poistanappi
         private void button2_Click(object sender, EventArgs e)
         {
             PoistaTietue();
         }
 
+        //Lisäänappi
         private void button1_Click(object sender, EventArgs e)
         {
-
             new LisaaAsiakas().ShowDialog();
+            LinkitaTietokanta();
         }
 
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
-
+        //Muokkausnappi
         private void button3_Click(object sender, EventArgs e)
         {
+            //Kerätään tiedot
             int asiakasid = int.Parse(this.dataGridAsiakas.SelectedRows[0].Cells["asiakas_id"].Value.ToString());
             string etunimi = this.dataGridAsiakas.SelectedRows[0].Cells["etunimi"].Value.ToString();
             string sukunimi = this.dataGridAsiakas.SelectedRows[0].Cells["sukunimi"].Value.ToString();
@@ -96,7 +104,13 @@ namespace Käyttöliittymäluonnoksia
             string postinro = this.dataGridAsiakas.SelectedRows[0].Cells["postinro"].Value.ToString();
             string email = this.dataGridAsiakas.SelectedRows[0].Cells["email"].Value.ToString();
             string puhelinnro = this.dataGridAsiakas.SelectedRows[0].Cells["puhelinnro"].Value.ToString();
+
+            //Viedään tiedot "lisää asiakas" tauluun jossa sitä voidaan muokata
             new LisaaAsiakas(asiakasid, etunimi, sukunimi, lahiosoite, postitoimipaikka, postinro, email, puhelinnro).ShowDialog();
+
+            //Kun muokkaus on valmis päivitetään lista
+            LinkitaTietokanta();
+
         }
     }
 }

@@ -17,6 +17,7 @@ namespace Käyttöliittymäluonnoksia
         string etunimi, sukunimi, lahiosoite, postitoimipaikka, postinro, email, puhelinnro;
         int asiakasid;
 
+        
         private void LisaaAsiakas_Load(object sender, EventArgs e)
         {
             textBox1.Text = etunimi;
@@ -35,6 +36,7 @@ namespace Käyttöliittymäluonnoksia
             InitializeComponent();
         }
 
+        //Jos tietoja muokataan viedään tiedot näkyviin
         public LisaaAsiakas(int asiakasid, string etunimi, string sukunimi, string lahiosoite, string postitoimipaikka, string postinro, string email, string puhelinnro)
         {
             InitializeComponent();
@@ -57,7 +59,7 @@ namespace Käyttöliittymäluonnoksia
 
             string etunimi = textBox1.Text;
             string sukunimi = textBox2.Text;
-            string lahisoite = textBox3.Text;
+            string lahiosoite = textBox3.Text;
             string postitoimipaikka = textBox4.Text;
             string postinro = textBox5.Text;
             string email = textBox6.Text;
@@ -71,13 +73,13 @@ namespace Käyttöliittymäluonnoksia
                 {
                     kysely = @"UPDATE asiakas SET etunimi='" + etunimi + "', sukunimi='" + sukunimi + "', lahiosoite='" + lahiosoite + "'," +
                         " postitoimipaikka='" + postitoimipaikka + "', postinro='" + postinro + "', email='" + email + 
-                        "', puhelinnro='" + puhelinnro + "'WHERE asiakas_id='" + asiakasid + "';";
+                        "', puhelinnro='" + puhelinro + "'WHERE asiakas_id='" + asiakasid + "';";
                 }
                 else
                 {
                     //Tällä kyselyllä haetaan tieto mysql tietokannasta
                     kysely = @"INSERT INTO asiakas (etunimi, sukunimi, lahiosoite, postitoimipaikka, postinro, email, puhelinnro)
-                            VALUES('" + etunimi + "', '" + sukunimi + "', '" + lahisoite + "', '"
+                            VALUES('" + etunimi + "', '" + sukunimi + "', '" + lahiosoite + "', '"
                                 + postitoimipaikka + "', '" + postinro + "', '" + email +
                                 "', '" + puhelinro + "'); ";
                 }

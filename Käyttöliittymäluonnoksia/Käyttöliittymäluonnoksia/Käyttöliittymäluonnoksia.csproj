@@ -12,6 +12,21 @@
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -59,17 +74,17 @@
     <Compile Include="Asiakashallinta.Designer.cs">
       <DependentUpon>Asiakashallinta.cs</DependentUpon>
     </Compile>
+    <Compile Include="Laskujenhallinta.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Laskujenhallinta.Designer.cs">
+      <DependentUpon>Laskujenhallinta.cs</DependentUpon>
+    </Compile>
     <Compile Include="LisaaAsiakas.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="LisaaAsiakas.Designer.cs">
       <DependentUpon>LisaaAsiakas.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Lisaalasku.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Lisaalasku.Designer.cs">
-      <DependentUpon>Lisaalasku.cs</DependentUpon>
     </Compile>
     <Compile Include="LisaaMokki.cs">
       <SubType>Form</SubType>
@@ -82,12 +97,6 @@
     </Compile>
     <Compile Include="Lisaatoimipiste.Designer.cs">
       <DependentUpon>Lisaatoimipiste.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Lisaa_muokkaa_mokki.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Lisaa_muokkaa_mokki.Designer.cs">
-      <DependentUpon>Lisaa_muokkaa_mokki.cs</DependentUpon>
     </Compile>
     <Compile Include="Mokinhallinta.cs">
       <SubType>Form</SubType>
@@ -144,20 +153,17 @@
     <EmbeddedResource Include="Asiakashallinta.resx">
       <DependentUpon>Asiakashallinta.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Laskujenhallinta.resx">
+      <DependentUpon>Laskujenhallinta.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="LisaaAsiakas.resx">
       <DependentUpon>LisaaAsiakas.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Lisaalasku.resx">
-      <DependentUpon>Lisaalasku.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="LisaaMokki.resx">
       <DependentUpon>LisaaMokki.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Lisaatoimipiste.resx">
       <DependentUpon>Lisaatoimipiste.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Lisaa_muokkaa_mokki.resx">
-      <DependentUpon>Lisaa_muokkaa_mokki.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Mokinhallinta.resx">
       <DependentUpon>Mokinhallinta.cs</DependentUpon>
@@ -212,6 +218,18 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.6.1">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.6.1 %28x86 and x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

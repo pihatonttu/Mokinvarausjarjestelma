@@ -49,7 +49,6 @@ namespace Käyttöliittymäluonnoksia
             if (dt.Rows.Count > 0)
             {
                 
-
                 if (dataGridPalvelu.InvokeRequired)
                 {
                     dataGridPalvelu.Invoke(new MethodInvoker(delegate { dataGridPalvelu.DataSource = null; dataGridPalvelu.DataSource = dt; }));

@@ -69,7 +69,7 @@ namespace Käyttöliittymäluonnoksia
 
         private void button1_Click(object sender, EventArgs e)
         {
-            new Uusi_varaus().Show();
+            new Uusi_varaus().ShowDialog();
         }
 
         private void button2_Click(object sender, EventArgs e)

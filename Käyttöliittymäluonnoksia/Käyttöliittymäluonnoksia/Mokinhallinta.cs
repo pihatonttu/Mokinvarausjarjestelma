@@ -62,7 +62,8 @@ namespace Käyttöliittymäluonnoksia
                     yhteys.Close();
                 }
 
-
+                //Poistetaan rivi näkyvistä
+                this.dataGridMokki.Rows.RemoveAt(this.dataGridMokki.SelectedRows[0].Index);
             }
         }
 
@@ -74,6 +75,7 @@ namespace Käyttöliittymäluonnoksia
         private void button2_Click(object sender, EventArgs e)
         {
             new LisaaMokki().ShowDialog();
+            LinkitaTietokanta();
         }
 
         private void button4_Click(object sender, EventArgs e)
@@ -83,13 +85,13 @@ namespace Käyttöliittymäluonnoksia
 
         private void button3_Click(object sender, EventArgs e)
         {
-            
             string nimi = this.dataGridMokki.SelectedRows[0].Cells["nimi"].Value.ToString();
             string osoite = this.dataGridMokki.SelectedRows[0].Cells["osoite"].Value.ToString();
             int mökkiid = int.Parse(this.dataGridMokki.SelectedRows[0].Cells["mökki_id"].Value.ToString());
             string kuvaus = this.dataGridMokki.SelectedRows[0].Cells["kuvaus"].Value.ToString();
             int hinta = int.Parse(this.dataGridMokki.SelectedRows[0].Cells["hinta"].Value.ToString());
-            new LisaaMokki(nimi, osoite, mökkiid, kuvaus, hinta).Show();
+            new LisaaMokki(nimi, osoite, mökkiid, kuvaus, hinta).ShowDialog();
+            LinkitaTietokanta();
         }
     }
 }
