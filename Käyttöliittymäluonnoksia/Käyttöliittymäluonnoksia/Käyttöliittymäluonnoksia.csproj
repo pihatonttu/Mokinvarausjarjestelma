@@ -145,6 +145,12 @@
     <Compile Include="Toimipisteidenhallinta.Designer.cs">
       <DependentUpon>Toimipisteidenhallinta.cs</DependentUpon>
     </Compile>
+    <Compile Include="Uusi_Palvelu_Varaus.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Uusi_Palvelu_Varaus.Designer.cs">
+      <DependentUpon>Uusi_Palvelu_Varaus.cs</DependentUpon>
+    </Compile>
     <Compile Include="Uusi_varaus.cs">
       <SubType>Form</SubType>
     </Compile>
