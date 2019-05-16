@@ -200,7 +200,6 @@
         private System.Windows.Forms.DateTimePicker dtploppumokki;
         private System.Windows.Forms.DateTimePicker dtploppupalvelu;
         private System.Windows.Forms.DateTimePicker dtpalkupalvelu;
-        private System.Windows.Forms.ListBox listBox1;
         private System.Windows.Forms.DataGridView datagridmok;
     }
 }

@@ -35,18 +35,14 @@
             this.mökkibtn = new System.Windows.Forms.Button();
             this.palvelubtn = new System.Windows.Forms.Button();
             this.toimipistebtn = new System.Windows.Forms.Button();
-            this.lisavarausbtn = new System.Windows.Forms.Button();
             this.asiakasbtn = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.label2 = new System.Windows.Forms.Label();
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.label3 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
             this.label4 = new System.Windows.Forms.Label();
-            this.groupBox1.SuspendLayout();
+            this.lisavarausbtn = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -115,17 +111,6 @@
             this.toimipistebtn.UseVisualStyleBackColor = true;
             this.toimipistebtn.Click += new System.EventHandler(this.toimipistebtn_Click);
             // 
-            // lisavarausbtn
-            // 
-            this.lisavarausbtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
-            this.lisavarausbtn.Location = new System.Drawing.Point(0, 51);
-            this.lisavarausbtn.Name = "lisavarausbtn";
-            this.lisavarausbtn.Size = new System.Drawing.Size(106, 54);
-            this.lisavarausbtn.TabIndex = 6;
-            this.lisavarausbtn.Text = "Mökki";
-            this.lisavarausbtn.UseVisualStyleBackColor = true;
-            this.lisavarausbtn.Click += new System.EventHandler(this.lisavarausbtn_Click);
-            // 
             // asiakasbtn
             // 
             this.asiakasbtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
@@ -136,16 +121,6 @@
             this.asiakasbtn.Text = "Asiakashallinta";
             this.asiakasbtn.UseVisualStyleBackColor = true;
             this.asiakasbtn.Click += new System.EventHandler(this.asiakasbtn_Click);
-            // 
-            // button1
-            // 
-            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
-            this.button1.Location = new System.Drawing.Point(112, 51);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(105, 54);
-            this.button1.TabIndex = 8;
-            this.button1.Text = "Palvelu";
-            this.button1.UseVisualStyleBackColor = true;
             // 
             // button2
             // 
@@ -163,27 +138,6 @@
             this.contextMenuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.contextMenuStrip1.Name = "contextMenuStrip1";
             this.contextMenuStrip1.Size = new System.Drawing.Size(61, 4);
-            // 
-            // groupBox1
-            // 
-            this.groupBox1.Controls.Add(this.label2);
-            this.groupBox1.Controls.Add(this.lisavarausbtn);
-            this.groupBox1.Controls.Add(this.button1);
-            this.groupBox1.Location = new System.Drawing.Point(12, 5);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(217, 105);
-            this.groupBox1.TabIndex = 11;
-            this.groupBox1.TabStop = false;
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(64, 16);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(86, 31);
-            this.label2.TabIndex = 9;
-            this.label2.Text = "Varaa";
             // 
             // progressBar1
             // 
@@ -205,11 +159,11 @@
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.lisavarausbtn);
             this.panel1.Controls.Add(this.palvelubtn);
             this.panel1.Controls.Add(this.mökkibtn);
             this.panel1.Controls.Add(this.toimipistebtn);
             this.panel1.Controls.Add(this.laskubtn);
-            this.panel1.Controls.Add(this.groupBox1);
             this.panel1.Controls.Add(this.varausbtn);
             this.panel1.Controls.Add(this.button2);
             this.panel1.Controls.Add(this.asiakasbtn);
@@ -229,6 +183,17 @@
             this.label4.TabIndex = 15;
             this.label4.Text = "Yhteys muodostettu";
             // 
+            // lisavarausbtn
+            // 
+            this.lisavarausbtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
+            this.lisavarausbtn.Location = new System.Drawing.Point(12, 13);
+            this.lisavarausbtn.Name = "lisavarausbtn";
+            this.lisavarausbtn.Size = new System.Drawing.Size(217, 97);
+            this.lisavarausbtn.TabIndex = 6;
+            this.lisavarausbtn.Text = "Lisää uusi varaus";
+            this.lisavarausbtn.UseVisualStyleBackColor = true;
+            this.lisavarausbtn.Click += new System.EventHandler(this.lisavarausbtn_Click);
+            // 
             // Alkuvalikko
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -242,8 +207,6 @@
             this.Name = "Alkuvalikko";
             this.Text = "Alkuvalikko";
             this.Load += new System.EventHandler(this.Alkuvalikko_Load_1);
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
             this.panel1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -258,16 +221,13 @@
         private System.Windows.Forms.Button mökkibtn;
         private System.Windows.Forms.Button palvelubtn;
         private System.Windows.Forms.Button toimipistebtn;
-        private System.Windows.Forms.Button lisavarausbtn;
         private System.Windows.Forms.Button asiakasbtn;
-        private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
-        private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.Label label2;
         private System.Windows.Forms.ProgressBar progressBar1;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Button lisavarausbtn;
     }
 }

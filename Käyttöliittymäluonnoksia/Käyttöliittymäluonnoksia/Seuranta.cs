@@ -75,6 +75,9 @@ namespace Käyttöliittymäluonnoksia
         //Tarkistetaan päällekkäisyydet ja näytetään vapaat mökit
         private void button2_Click(object sender,EventArgs e)
         {
+            datagridmok.DataSource = null;
+            listamokit.Rows.Clear();
+
             string valinta = mokkicombo.SelectedValue.ToString();
             
             DateTime alkupvm = dtpalkumokki.Value;
@@ -117,8 +120,6 @@ namespace Käyttöliittymäluonnoksia
         //Haetaan vapaiden mökkien tiedot
         private void haeVapaatMokit(string vapaat)
         {
-            listamokit.Rows.Clear();
-            datagridmok.DataSource = null;
 
             if (vapaat != "")
             {

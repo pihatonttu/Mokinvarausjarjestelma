@@ -14,6 +14,9 @@ namespace Käyttöliittymäluonnoksia
 {
     public partial class Uusi_varaus : Form
     {
+        //Mysql serverin tiedot
+        string yhteysteksti = @"server=85.23.149.196;port=3306;userid=admin;password=admin123;database=mokkitietokanta";
+
         public Uusi_varaus()
         {
             InitializeComponent();
@@ -32,18 +35,14 @@ namespace Käyttöliittymäluonnoksia
             comboBox2.ValueMember = "toimipiste_id";
             comboBox2.DisplayMember = "nimi";
 
-            comboBox3.DataSource = LinkitaTietokanta("mökki");
-            comboBox3.ValueMember = "mökki_id";
-            comboBox3.DisplayMember = "nimi";
+            combopalvelu.Enabled = false;
+            comboBox3.Enabled = false;
         }
 
         private DataTable LinkitaTietokanta(string taulu)
         {
             DataTable dt = new DataTable();
-
-            //Mysql serverin tiedot
-            string yhteysteksti = @"server=85.23.149.196;port=3306;userid=admin;password=admin123;database=mokkitietokanta";
-
+   
             //Tällä kyselyllä haetaan tieto mysql tietokannasta
             string kysely = "SELECT * FROM " + taulu;
 
@@ -137,6 +136,7 @@ namespace Käyttöliittymäluonnoksia
             string lkm = numericUpDown1.Value.ToString();
             string alkamispvm = dateTimePicker1.Value.ToString("yyyy-MM-dd HH:mm:ss");
             string loppumispvm = dateTimePicker2.Value.ToString("yyyy-MM-dd HH:mm:ss");
+            string palvelu_id = combopalvelu.SelectedValue.ToString();
 
             string kysely1 = @"INSERT INTO varaus (asiakas_id, toimipiste_id, varattu_pvm)
                                VALUES ('" + asiakas_id + "', '" + toimipiste_id + "', '" + varattu_pvm + "')";
@@ -147,29 +147,54 @@ namespace Käyttöliittymäluonnoksia
 
             string kysely2 = @"INSERT INTO mökki_varaus (varaus_id, mökki_id, lkm, alkamispäivämäärä, loppumispäivämäärä)
                                VALUES ('" + varaus_id + "', '" + mökki_id + "', '" + lkm + "', '" + alkamispvm + "', '" + loppumispvm + "')";
-            
+
+            //Lisätään palvelu jos se on
+            if (combopalvelu.SelectedValue.ToString() != "")
+            {
+                string kyselyPalvelu = @"INSERT INTO varauksen_palvelut (varaus_id, palvelu_id, alkamispäivämäärä, loppumispäivämäärä)
+                               VALUES ('" + varaus_id + "', '" + palvelu_id + "', '" + alkamispvm + "', '" + loppumispvm + "')";
+            }
+
             LisaaTietoja(kysely2);
 
             //Laskun tekeminen
+            double palvelunhinta = 0;
+
+            //haetaan mökin hinta
             double mokinhinta = double.Parse(Get_string("mökki WHERE mökki_id = " + comboBox3.SelectedValue.ToString(),"hinta"));
+
+            //tarkastetaan onko palvelu ja lasketaan se sitten
+            if (combopalvelu.SelectedValue.ToString() != "")
+            {
+                palvelunhinta = double.Parse(Get_string("palvelu WHERE palvelu_id =" + combopalvelu.SelectedValue.ToString(),"hinta"));
+            }
+
+            //alvi prosentti on aina sama
             double alv = 24;
+
+            //Lasketaan kokonaissumma
+            double kokonaissumma = (mokinhinta + palvelunhinta) * 1.24;
+
             string kysely3;
 
+            kysely3 = "INSERT INTO lasku (varaus_id, asiakas_id, summa, alv) " +
+                    "VALUES ('" + varaus_id + "','" + asiakas_id + "','" + kokonaissumma + "','" + alv + "')";
+
             //Tarkistetaan onko jo jotain laskua tälle varaukselle kuten palvelua
-            string onkojojotain = Get_string("lasku WHERE varaus_id = "+varaus_id,"varaus_id");
-            if (onkojojotain != "")
-            {
-                Debug.WriteLine(Get_string("lasku WHERE varaus_id =" + varaus_id,"summa"));
-                double edsumma = double.Parse(Get_string("lasku WHERE varaus_id ="+varaus_id,"summa"));
-                mokinhinta += edsumma;  //Jos on niin lisätään se summaan
-                kysely3 = @"UPDATE lasku SET summa='" + mokinhinta +"' WHERE varaus_id='" + varaus_id + "';";
-            }
-            else{
-                //Jos edellistä ei löydetty luodaan uusi lasku
-                kysely3 = "INSERT INTO lasku (varaus_id, asiakas_id, summa, alv) " +
-                 "VALUES ('" + varaus_id + "','" + asiakas_id + "','" + mokinhinta + "','" + alv + "')";
-            }
-            
+            //string onkojojotain = Get_string("lasku WHERE varaus_id = "+varaus_id,"varaus_id");
+            //if (onkojojotain != "")
+            //{
+            //    Debug.WriteLine(Get_string("lasku WHERE varaus_id =" + varaus_id,"summa"));
+            //    double edsumma = double.Parse(Get_string("lasku WHERE varaus_id ="+varaus_id,"summa"));
+            //    mokinhinta += edsumma;  //Jos on niin lisätään se summaan
+            //    kysely3 = @"UPDATE lasku SET summa='" + mokinhinta +"' WHERE varaus_id='" + varaus_id + "';";
+            //}
+            //else{
+            //    //Jos edellistä ei löydetty luodaan uusi lasku
+            //    kysely3 = "INSERT INTO lasku (varaus_id, asiakas_id, summa, alv) " +
+            //     "VALUES ('" + varaus_id + "','" + asiakas_id + "','" + mokinhinta + "','" + alv + "')";
+            //}
+
             //Lähetetään kysely serverille
             LisaaTietoja(kysely3);
 
@@ -184,6 +209,46 @@ namespace Käyttöliittymäluonnoksia
             comboBox1.DataSource = table;
             comboBox1.ValueMember = "asiakas_id";
             comboBox1.DisplayMember = "nimi";
+        }
+
+        private void comboBox2_SelectedIndexChanged(object sender,EventArgs e)
+        {
+            comboBox3.Enabled = true;
+            combopalvelu.Enabled = true;
+            comboBox3.Text = "";
+            combopalvelu.Text = "";
+            //Debug.WriteLine(comboBox2.SelectedValue.ToString());
+
+            //Mökki dropdown valikko
+            comboBox3.DataSource = LinkitaTietokanta("mökki");
+            comboBox3.ValueMember = "mökki_id";
+            comboBox3.DisplayMember = "nimi";
+
+            //Palvelu dropdown valikko
+            if (comboBox2.SelectedValue.ToString() != "System.Data.DataRowView")
+            {
+                combopalvelu.ValueMember = "palvelu_id";
+                combopalvelu.DisplayMember = "nimi";
+                combopalvelu.DataSource = TietokantaToimipisteella("palvelu",comboBox2.SelectedValue.ToString());
+            }
+        }
+
+        private DataTable TietokantaToimipisteella(string taulu, string id)
+        {
+            DataTable dt = new DataTable();
+
+            //Tällä kyselyllä haetaan tieto mysql tietokannasta
+            string kysely = "SELECT * FROM " + taulu + " WHERE toimipiste_id = "+ id;
+            Debug.WriteLine(comboBox2.SelectedValue.ToString());
+
+            using (MySqlConnection yhteys = new MySqlConnection(yhteysteksti))
+            {
+                MySqlCommand cmd = new MySqlCommand(kysely,yhteys);
+                yhteys.Open();
+                MySqlDataReader reader = cmd.ExecuteReader();
+                dt.Load(reader);
+            }
+            return dt;
         }
     }
 }
