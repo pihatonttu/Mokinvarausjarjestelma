@@ -102,11 +102,15 @@ namespace Käyttöliittymäluonnoksia
             string vapaat = "";
             for (int i = 0; i < mokkienidt.Count; i++)
             {
-                DateTime alkupvm2 = DateTime.Parse(Get_string("mökki_varaus WHERE mökki_id =" + mokkienidt[i],"alkamispäivämäärä"));
+                DateTime alkupvm2 = DateTime.Parse(Get_string("mökki_varaus WHERE mökki_id =" + mokkienidt[i], "alkamispäivämäärä"));
+                if (alkupvm2 == null) {
+                    break;
+                }
+
                 DateTime loppupvm2 = DateTime.Parse(Get_string("mökki_varaus WHERE mökki_id =" + mokkienidt[i],"loppumispäivämäärä"));
 
                 //Tarkistetaan onko päällekkäisyyksiä
-                bool solmussa = alkupvm < loppupvm2 && alkupvm2 < alkupvm;
+                bool solmussa = alkupvm < loppupvm2 && alkupvm2 > alkupvm;
 
                 //Jos ei päällekkäisyyksiä niin lisätään se listaan
                 if(!solmussa){

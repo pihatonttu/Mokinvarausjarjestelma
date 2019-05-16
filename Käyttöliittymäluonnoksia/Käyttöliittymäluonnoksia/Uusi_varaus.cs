@@ -149,13 +149,11 @@ namespace Käyttöliittymäluonnoksia
                                VALUES ('" + varaus_id + "', '" + mökki_id + "', '" + lkm + "', '" + alkamispvm + "', '" + loppumispvm + "')";
 
             //Lisätään palvelu jos se on
-            if (combopalvelu.SelectedValue.ToString() != "")
-            {
-                string kyselyPalvelu = @"INSERT INTO varauksen_palvelut (varaus_id, palvelu_id, alkamispäivämäärä, loppumispäivämäärä)
-                               VALUES ('" + varaus_id + "', '" + palvelu_id + "', '" + alkamispvm + "', '" + loppumispvm + "')";
-            }
+            string kyselyPalvelu = @"INSERT INTO varauksen_palvelut (varaus_id, palvelu_id, alkamispvmäärä , loppumispvmäärä )
+                                     VALUES ('" + varaus_id + "', '" + palvelu_id + "', '" + alkamispvm + "', '" + loppumispvm + "')";
 
             LisaaTietoja(kysely2);
+            LisaaTietoja(kyselyPalvelu);
 
             //Laskun tekeminen
             double palvelunhinta = 0;
@@ -179,21 +177,6 @@ namespace Käyttöliittymäluonnoksia
 
             kysely3 = "INSERT INTO lasku (varaus_id, asiakas_id, summa, alv) " +
                     "VALUES ('" + varaus_id + "','" + asiakas_id + "','" + kokonaissumma + "','" + alv + "')";
-
-            //Tarkistetaan onko jo jotain laskua tälle varaukselle kuten palvelua
-            //string onkojojotain = Get_string("lasku WHERE varaus_id = "+varaus_id,"varaus_id");
-            //if (onkojojotain != "")
-            //{
-            //    Debug.WriteLine(Get_string("lasku WHERE varaus_id =" + varaus_id,"summa"));
-            //    double edsumma = double.Parse(Get_string("lasku WHERE varaus_id ="+varaus_id,"summa"));
-            //    mokinhinta += edsumma;  //Jos on niin lisätään se summaan
-            //    kysely3 = @"UPDATE lasku SET summa='" + mokinhinta +"' WHERE varaus_id='" + varaus_id + "';";
-            //}
-            //else{
-            //    //Jos edellistä ei löydetty luodaan uusi lasku
-            //    kysely3 = "INSERT INTO lasku (varaus_id, asiakas_id, summa, alv) " +
-            //     "VALUES ('" + varaus_id + "','" + asiakas_id + "','" + mokinhinta + "','" + alv + "')";
-            //}
 
             //Lähetetään kysely serverille
             LisaaTietoja(kysely3);
