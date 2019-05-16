@@ -3,11 +3,15 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using iTextSharp.text;
+using iTextSharp.text.pdf;
 using MySql.Data.MySqlClient;
+using System.Net.Mail;
 
 
 namespace Käyttöliittymäluonnoksia
@@ -27,11 +31,14 @@ namespace Käyttöliittymäluonnoksia
             DataTable dt = new DataTable();
 
             //Luodaan kysely jolla saadaan tarvittava tieto tietokannasta
-            string kysely = @"SELECT mökki.nimi, mökki.osoite, asiakas.etunimi, asiakas.sukunimi, asiakas.lahiosoite, asiakas.postitoimipaikka, asiakas.postinro, lasku.summa, lasku.alv, lasku.Maksettu
+            string kysely = @"SELECT lasku.lasku_id, mökki.nimi, mökki.hinta, palvelu.nimi, palvelu.hinta, asiakas.etunimi, asiakas.sukunimi, asiakas.lahiosoite, asiakas.postitoimipaikka, asiakas.postinro, asiakas.email, lasku.summa, lasku.alv, lasku.Maksettu
                               FROM lasku
                               INNER JOIN asiakas ON lasku.asiakas_id = asiakas.asiakas_id
                               INNER JOIN mökki_varaus ON lasku.varaus_id = mökki_varaus.varaus_id
-                              INNER JOIN mökki ON mökki_varaus.mökki_id = mökki.mökki_id";
+                              INNER JOIN mökki ON mökki_varaus.mökki_id = mökki.mökki_id
+                              INNER JOIN varaus ON lasku.varaus_id = varaus.varaus_id
+                              INNER JOIN varauksen_palvelut ON varaus.varaus_id = varauksen_palvelut.varaus_id
+                              INNER JOIN palvelu ON varauksen_palvelut.palvelu_id = palvelu.palvelu_id";
 
             //Lähetään kysely serverille
             using (MySqlConnection yhteys = new MySqlConnection(yhteysteksti))
@@ -84,6 +91,70 @@ namespace Käyttöliittymäluonnoksia
         private void Laskujenhallinta_Load(object sender, EventArgs e)
         {
             LinkitaTietokanta();
+        }
+
+        private void Paperilasku()
+        {
+            using (SaveFileDialog sfd = new SaveFileDialog() { Filter="PDF file|*.pdf", ValidateNames = true }) {
+                if (sfd.ShowDialog() == DialogResult.OK) {
+                    iTextSharp.text.Document doc = new iTextSharp.text.Document(PageSize.A4.Rotate());
+                    try {
+                        PdfWriter.GetInstance(doc, new FileStream(sfd.FileName, FileMode.Create));
+                        doc.Open();
+                        doc.Add(new iTextSharp.text.Paragraph(Get_laskuntiedot()));
+                    }
+                    catch (Exception ex) {
+                        MessageBox.Show(ex.Message);
+                    }
+                    finally {
+                        doc.Close();
+                    }
+                }
+            }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            Paperilasku();
+        }
+
+        private void Spostilasku()
+        {
+            // Testaamiseksi pitää syöttää oman sähköpostin tiedot ja vastaanottaja nuolella merkityille riveille
+            try {
+                MailMessage viesti = new MailMessage("laskutus@villagepeople.com", "vastaanottaja@esim.com"); // <--
+                SmtpClient client = new SmtpClient();
+                client.Port = 25;
+                client.DeliveryMethod = SmtpDeliveryMethod.Network;
+                client.Credentials = new System.Net.NetworkCredential("käyttäjänimi", "salasana"); // <--
+                client.UseDefaultCredentials = true;
+                client.EnableSsl = true;
+                client.Host = "smtp-serveri"; // <--
+                viesti.Subject = "Lasku#" + this.dataGridLasku.SelectedRows[0].Cells["lasku_id"].Value.ToString();
+                viesti.Body = Get_laskuntiedot();
+                client.Send(viesti);
+                MessageBox.Show("Viesti lähetetty!");
+            }
+            catch (Exception ex) {
+                MessageBox.Show(ex.Message + "\nTarkista lähettäjän tiedot koodista.");
+            }
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            Spostilasku();
+        }
+
+        private string Get_laskuntiedot()
+        {
+            string tiedot = "Tilaaja: " + this.dataGridLasku.SelectedRows[0].Cells["etunimi"].Value.ToString() + " " + this.dataGridLasku.SelectedRows[0].Cells["sukunimi"].Value.ToString();
+            tiedot += "\nMökki: " + this.dataGridLasku.SelectedRows[0].Cells["nimi"].Value.ToString();
+            tiedot += "\nMökin hinta: " + this.dataGridLasku.SelectedRows[0].Cells["hinta"].Value.ToString();
+            tiedot += "\nPalvelu: " + this.dataGridLasku.SelectedRows[0].Cells["nimi1"].Value.ToString();
+            tiedot += "\nPalvelun hinta: " + this.dataGridLasku.SelectedRows[0].Cells["hinta1"].Value.ToString();
+            tiedot += "\nAlv: " + this.dataGridLasku.SelectedRows[0].Cells["alv"].Value.ToString();
+            tiedot += "\nLaskun summa(alv:in kanssa): " + this.dataGridLasku.SelectedRows[0].Cells["summa"].Value.ToString();
+            return tiedot;
         }
     }
 }
