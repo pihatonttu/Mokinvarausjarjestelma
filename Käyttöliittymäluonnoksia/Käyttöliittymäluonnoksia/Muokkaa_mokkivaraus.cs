@@ -53,6 +53,8 @@ namespace Käyttöliittymäluonnoksia {
         private void Muokkaa_mokkivaraus_Load(object sender, EventArgs e)
         {
             numericUpDown1.Value = lkm;
+            //dateTimePicker1.Format = DateTimePickerFormat.Custom;
+            //dateTimePicker1.CustomFormat = "yyyy-MM-dd";
             dateTimePicker1.Value = alku;
             dateTimePicker2.Value = loppu;
         }
